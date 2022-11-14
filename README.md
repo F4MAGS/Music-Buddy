@@ -108,7 +108,43 @@ GIF created with [LiceCap](http://www.cockos.com/licecap/).
 ## Schema 
 [This section will be completed in Unit 9]
 ### Models
-[Add table of models]
+
+#### User
+
+  | Property          | Type     | Description |
+   | -------------       | -------- | ------------|
+   | userID            | int       | unique id for the user (default field and auto) |
+   | username      | String  | name the user chooses from spotify or create in the app when first sign in|
+   | userAge        | int        | user age |
+   | location         | String   | the state where the user is located|
+   | profilePic       | File      | user profile pic from spotify or uploaded himself/herself|
+   | profileDescription  | String   | User bio/description |
+   | invites           | User[] (array of users)  | friends an user has |  
+   | friends           | User[] (array of users)  | friends an user has |  
+   | createdAt      | DateTime     | date when User is created (default field) |
+   | lastSwiped    | int               |  Highest userID seen |
+
+
+User has swiped 3 users 
+#### listUsers
+| Property      | Type     | Description |
+   | ------------- | -------- | ------------|
+   | objectId      | int    | unique id for all users in this table (default field and auto) |
+   | userId    | int| user id that it is in the User table |
+
+#### userChat
+| Property      | Type     | Description |
+   | ------------- | -------- | ------------|
+   | objectId      | int    | unique id for conversations (default increasing)|
+   | userId1    | int| this is the id of the user that is going to send the message  |
+   | userId2  | int| this is the id of the user that is going to get the message |
+   | chat  | String| this is the actual content of the chat (for example 'hi, how are you') |
+   |previousId| int | we will need this to link the message to the previous message, so we will have an order when displaying the chat
+   | createdAt     | DateTime | date when User is created (default field) |
+
+   
+
+
 ### Networking
 - [Add list of network requests by screen ]
 - [Create basic snippets for each Parse network request]
