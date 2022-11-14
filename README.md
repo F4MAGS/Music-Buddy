@@ -135,6 +135,21 @@ GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
 ### Networking
 #### List of network requests by screen
+   - Home
+		- (Read/Get) Query all users user hasn’t matched with 
+			 ```java
+			ParseQuery<UserID> query = ParseQuery.getQuery("UserList");
+			query.findInBackground(new FindCallback<ParseObject>() {
+				public void done(List<User> UserList, ParseException e) {
+					if (e == null) {
+						Log.d("score", "Retrieved " + userList.size() + " users");
+					} else {
+						Log.d("score", "Error: " + e.getMessage());
+					}
+				}
+			});
+
+			```
    - Settings
 		- (Read/Get) Create picture for profile
 			 ```java
@@ -285,7 +300,14 @@ GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
 			```
 
-- [Create basic snippets for each Parse network request]
+#### API Endpoints
+##### Spotify API
+- Base URL - [https://api.spotify.com/v1](https://api.spotify.com/v1)
 
+   HTTP Verb | Endpoint | Description
+   ----------|----------|------------
+    `GET`    | /me/top/type | Get User's Top Items
+    `GET`    | /users/user_id  | Get User's Profile
+    `GET`    | /me  | Get Current User's Profile
+    `GET`    | me/player | Get Playback State
 
-- [OPTIONAL: List endpoints if using existing API such as Yelp]
