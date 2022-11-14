@@ -106,11 +106,8 @@
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
 ## Schema 
-[This section will be completed in Unit 9]
 ### Models
-
 #### User
-
   | Property          | Type     | Description |
    | -------------       | -------- | ------------|
    | userID            | int       | unique id for the user (default field and auto) |
@@ -119,18 +116,10 @@ GIF created with [LiceCap](http://www.cockos.com/licecap/).
    | location         | String   | the state where the user is located|
    | profilePic       | File      | user profile pic from spotify or uploaded himself/herself|
    | profileDescription  | String   | User bio/description |
-   | invites           | User[] (array of users)  | friends an user has |  
-   | friends           | User[] (array of users)  | friends an user has |  
+   | invites           | User[] (array of userID)  | invites an user has |  
+   | friends           | User[] (array of userID)  | friends an user has |  
    | createdAt      | DateTime     | date when User is created (default field) |
    | lastSwiped    | int               |  Highest userID seen |
-
-
-User has swiped 3 users 
-#### listUsers
-| Property      | Type     | Description |
-   | ------------- | -------- | ------------|
-   | objectId      | int    | unique id for all users in this table (default field and auto) |
-   | userId    | int| user id that it is in the User table |
 
 #### userChat
 | Property      | Type     | Description |
@@ -139,13 +128,33 @@ User has swiped 3 users
    | userId1    | int| this is the id of the user that is going to send the message  |
    | userId2  | int| this is the id of the user that is going to get the message |
    | chat  | String| this is the actual content of the chat (for example 'hi, how are you') |
-   |previousId| int | we will need this to link the message to the previous message, so we will have an order when displaying the chat
-   | createdAt     | DateTime | date when User is created (default field) |
+   |previousId	| int | we will need this to link the message to the previous message, so we will have an order when displaying the chat
+   | createdAt    | DateTime | date when User is created (default field) |
 
-   
 
 
 ### Networking
-- [Add list of network requests by screen ]
+   - Settings
+      - (Read/Get) Create picture for profile
+         ```
+	let query = PFQuery(className:"user")
+query.whereKey("id", equalTo: currentUser.id())
+query.findObjectsInBackground { (user: [profilePic]?, error: Error?) in
+   if let error = error { 
+      print(error.localizedDescription)
+   } else if let user =user {
+      print("Successfully retrieved \user.")
+   }
+}
+         ```
+ - 	(Create/POST) Create description for profile
+         ```java
+ParseObject profileDescription   = new ParseObject("profileDescription ");
+profileDescription.put("content", "myBio.");
+profileDescription .saveInBackground();
+         ```
+
+- 
 - [Create basic snippets for each Parse network request]
+- 
 - [OPTIONAL: List endpoints if using existing API such as Yelp]
