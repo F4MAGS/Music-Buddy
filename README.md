@@ -136,7 +136,7 @@ GIF created with [LiceCap](http://www.cockos.com/licecap/).
 ### Networking
 	- Settings
 		- (Read/Get) Create picture for profile
-			```
+			```java
 			let query = PFQuery(className:"username")
 			query.whereKey("id", equalTo: currentUser.id())
 			query.findObjectsInBackground { (user: [profilePic]?, error: Error?) in
