@@ -310,4 +310,5 @@ GIF created with [LiceCap](http://www.cockos.com/licecap/).
     `GET`    | /users/user_id  | Get User's Profile
     `GET`    | /me  | Get Current User's Profile
     `GET`    | me/player | Get Playback State
-
+    `GET`    | me/following | Get Followed Artists
+    `GET`    | me/following/contains | Check If User Follows Artists or Users
