@@ -134,25 +134,25 @@ GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
 
 ### Networking
-   - Settings
-      - (Read/Get) Create picture for profile
-	```
-	let query = PFQuery(className:"username")
-	query.whereKey("id", equalTo: currentUser.id())
-	query.findObjectsInBackground { (user: [profilePic]?, error: Error?) in
- 	  if let error = error { 
- 	     print(error.localizedDescription)
- 	  } else if let user =user {
-  	    print("Successfully retrieved \user.")
- 	  }
-	}
-	```
- - 	(Create/POST) Create description for profile
-         ```java
-	ParseObject profileDescription   = new ParseObject("profileDescription ");
-	profileDescription.put("content", "myBio.");
-	profileDescription .saveInBackground();
-         ```
+	- Settings
+		- (Read/Get) Create picture for profile
+			```
+			let query = PFQuery(className:"username")
+			query.whereKey("id", equalTo: currentUser.id())
+			query.findObjectsInBackground { (user: [profilePic]?, error: Error?) in
+				if let error = error { 
+					print(error.localizedDescription)
+				} else if let user =user {
+					print("Successfully retrieved \user.")
+				}
+			}
+			```
+		- (Create/POST) Create description for profile
+			 ```java
+			ParseObject profileDescription   = new ParseObject("profileDescription ");
+			profileDescription.put("content", "myBio.");
+			profileDescription .saveInBackground();
+			 ```
 
 - 
 - [Create basic snippets for each Parse network request]
