@@ -134,9 +134,10 @@ GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
 
 ### Networking
-	- Settings
+#### List of network requests by screen
+   - Settings
 		- (Read/Get) Create picture for profile
-			```java
+			 ```java
 			let query = PFQuery(className:"username")
 			query.whereKey("id", equalTo: currentUser.id())
 			query.findObjectsInBackground { (user: [profilePic]?, error: Error?) in
@@ -153,8 +154,138 @@ GIF created with [LiceCap](http://www.cockos.com/licecap/).
 			profileDescription.put("content", "myBio.");
 			profileDescription .saveInBackground();
 			 ```
+   - Profile
+		- (Read/Get) Query user description
+			 ```java
+			let query = PFQuery(className:"user")
+			query.whereKey("id", equalTo: currentUser.id())
+			query.findObjectsInBackground { (user: [profileDescription]?, error: Error?) in
+				if let error = error { 
+					print(error.localizedDescription)
+				} else if let user =user {
+					print("Successfully retrieved \user.")
+				}
+			}
+			```
+		- (Read/Get) Create picture for profile
+			 ```java
+				let query = PFQuery(className:"user")
+				query.whereKey("id", equalTo: currentUser.id())
+				query.findObjectsInBackground { (user: [profilePic]?, error: Error?) in
+				if let error = error { 
+					print(error.localizedDescription)
+				}	else if let user =user {
+					print("Successfully retrieved \user.")
+				}
+			}
+			```
+		- (Read/Get) Query username for userId
+			 ```java
+			let query = PFQuery(className:"user")
+			query.whereKey("id", equalTo: currentUser.id())
+			query.findObjectsInBackground { (user: [username]?, error: Error?) in
+				if let error = error { 
+					print(error.localizedDescription)
+				} else if let user =user {
+					print("Successfully retrieved \user.")
+					// TODO: Do something.
+				}
+			}
+			```
+   - Friends
+		- (Read/Get) List of users friends
+			 ```java
+			val query = ParseUser.getQuery()
+			query.findInBackground {friends, e ->
+				if (e == null) {
+					// The query was successful.
+				} else {
+					// Something went wrong.
+				}
+			}
+			```
+   - Chat List
+		- (Read/Get) List of users friends
+			 ```java
+			val query = ParseUser.getQuery()
+			query.findInBackground {friends, e ->
+				if (e == null) {
+					// The query was successful.
+				} else {
+					// Something went wrong.
+				}
+			}
+			```
+		- (Read/Get) Query username for friend
+			 ```java
+			let query = PFQuery(className:"user")
+			query.whereKey("id", equalTo:friend.id())
+			query.findObjectsInBackground { (user: [username]?, error: Error?) in
+				if let error = error { 
+					print(error.localizedDescription)
+				} else if let user =user {
+					print("Successfully retrieved \user.")
+					// TODO: Do something.
+				}
+			}
+			```
+		- (Read/Get) Query pic for friend
+			 ```java
+			let query = PFQuery(className:"user")
+			query.whereKey("id", equalTo:friend.id())
+			query.findObjectsInBackground { (user: [username]?, error: Error?) in
+				if let error = error { 
+					print(error.localizedDescription)
+				} else if let user =user {
+					print("Successfully retrieved \user.")
+					// TODO: Do something.
+				}
+			}
+			```
+   - Chat Message
+		- (Read/Get) Query messages between two userID
+			 ```java
+			let query = PFQuery(className:"userChat")
+			query.whereKey("userid1", equalTo: currentUser.id || userid2.id) &&
+			query.whereKey("userid1", equalTo: currentUser.id || userid2.id)
+			query.order(byDescending: "previousId")
+			query.findObjectsInBackground { (userChat: [id]?, error: Error?) in
+				if let error = error { 
+					print(error.localizedDescription)
+				} else if let userChat =userChat {
+					print("Successfully retrieved \userChat.")
+					// TODO: Do something.
+				}
+			}
+			```
+		- (Read/Get) Query username for user
+			 ```java
+			let query = PFQuery(className:"user")
+			query.whereKey("id", equalTo:user.id())
+			query.findObjectsInBackground { (user: [username]?, error: Error?) in
+				if let error = error { 
+					print(error.localizedDescription)
+				} else if let user =user {
+					print("Successfully retrieved \user.")
+					// TODO: Do something.
+				}
+			}
+			```
+		- (Read/Get) Query profile for user
+			 ```java
+			let query = PFQuery(className:"user")
+			query.whereKey("id", equalTo: userId2.id())
+			query.findObjectsInBackground { (user: [profilePic]?, error: Error?) in
+				if let error = error { 
+					print(error.localizedDescription)
+				} else if let user =user {
+					print("Successfully retrieved user.")
+				}
+			}
 
-- 
+			```
+
 - [Create basic snippets for each Parse network request]
-- 
+
+
 - [OPTIONAL: List endpoints if using existing API such as Yelp]
