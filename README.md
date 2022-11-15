@@ -273,7 +273,7 @@ GIF created with [LiceCap](http://www.cockos.com/licecap/).
    - Chat Message
 		- (Read/Get) Query messages between two userID
 			 ```java
-			let query = PFQuery(className:"userChat")
+			val query = ParseQuery<ParseObject>("userChat")
 			query.whereKey("userid1", equalTo: currentUser.id || userid2.id) &&
 			query.whereKey("userid1", equalTo: currentUser.id || userid2.id)
 			query.order(byDescending: "previousId")
@@ -288,14 +288,14 @@ GIF created with [LiceCap](http://www.cockos.com/licecap/).
 			```
 		- (Read/Get) Query username for user
 			 ```java
-			let query = PFQuery(className:"user")
-			query.whereKey("id", equalTo:user.id())
-			query.findObjectsInBackground { (user: [username]?, error: Error?) in
-				if let error = error { 
-					print(error.localizedDescription)
-				} else if let user =user {
-					print("Successfully retrieved \user.")
-					// TODO: Do something.
+			val query = ParseQuery<ParseObject>("Profile")
+			query.selectKeys(java.util.List.of("userID"))
+			query.findInBackground { objects: List<ParseObject>, e: ParseException? ->
+				if (e == null) {
+					Log.d(Companion.TAG, "Objects: $objects")
+					Log.d(Companion.TAG, "Object name: " + objects[0]["name"])
+				} else {
+					Log.e(Companion.TAG, "Parse Error: ", e)
 				}
 			}
 			```
