@@ -354,15 +354,11 @@ GIF created with [LiceCap](http://www.cockos.com/licecap/).
 			```
 		- (Create/POST) Create new chat message
 			 ```java
-			let query = PFQuery(className:"user")
-			query.whereKey("id", equalTo: userId2.id())
-			query.findObjectsInBackground { (user: [profilePic]?, error: Error?) in
-				if let error = error { 
-					print(error.localizedDescription)
-				} else if let user =user {
-					print("Successfully retrieved user.")
-				}
-			}
+			ParseObject newChatMessage   = new ParseObject("chatList ");
+			newChatMessage.set("chat", chat.toString());
+			newChatMessage.set("userid1", currentUserId);
+			newChatMessage.set("userid2", friendUserId);
+			newChatMessage.saveInBackground();
 			```
 #### API Endpoints
 ##### Spotify API
