@@ -106,11 +106,8 @@
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
 ## Schema 
-[This section will be completed in Unit 9]
 ### Models
-
 #### User
-
   | Property          | Type     | Description |
    | -------------       | -------- | ------------|
    | userID            | int       | unique id for the user (default field and auto) |
@@ -119,18 +116,10 @@ GIF created with [LiceCap](http://www.cockos.com/licecap/).
    | location         | String   | the state where the user is located|
    | profilePic       | File      | user profile pic from spotify or uploaded himself/herself|
    | profileDescription  | String   | User bio/description |
-   | invites           | User[] (array of users)  | friends an user has |  
-   | friends           | User[] (array of users)  | friends an user has |  
+   | invites           | User[] (array of userID)  | invites an user has |  
+   | friends           | User[] (array of userID)  | friends an user has |  
    | createdAt      | DateTime     | date when User is created (default field) |
    | lastSwiped    | int               |  Highest userID seen |
-
-
-User has swiped 3 users 
-#### listUsers
-| Property      | Type     | Description |
-   | ------------- | -------- | ------------|
-   | objectId      | int    | unique id for all users in this table (default field and auto) |
-   | userId    | int| user id that it is in the User table |
 
 #### userChat
 | Property      | Type     | Description |
@@ -139,13 +128,267 @@ User has swiped 3 users
    | userId1    | int| this is the id of the user that is going to send the message  |
    | userId2  | int| this is the id of the user that is going to get the message |
    | chat  | String| this is the actual content of the chat (for example 'hi, how are you') |
-   |previousId| int | we will need this to link the message to the previous message, so we will have an order when displaying the chat
-   | createdAt     | DateTime | date when User is created (default field) |
+   | createdAt    | DateTime | date when User is created (default field) |
 
-   
 
 
 ### Networking
-- [Add list of network requests by screen ]
-- [Create basic snippets for each Parse network request]
-- [OPTIONAL: List endpoints if using existing API such as Yelp]
+#### List of network requests by screen
+   - Home
+		- (Read/Get) Query last swiped
+			 ```java
+			val query = ParseQuery<ParseObject>("Profile")
+			query.whereMatches("userID")
+			query.selectKeys(java.util.List.of("lastSwiped"))
+			query.findInBackground { objects: List<ParseObject>, e: ParseException? ->
+				if (e == null) {
+					Log.d(Companion.TAG, "Objects: $objects")
+					Log.d(Companion.TAG, "Object name: " + objects[0]["lastSwiped"])
+				} else {
+					Log.e(Companion.TAG, "Parse Error: ", e)
+				}
+			}
+
+			```
+		- (Create/Post) Add userID in User invite array
+			 ```java
+			val query = ParseQuery<ParseObject>("Profile")
+			query.whereMatches("userID")
+			query.selectKeys(java.util.List.of("invites"))
+			query.adddInvite(otherUserID)
+			query.saveInBackground { objects: List<ParseObject>, e: ParseException? ->
+				if (e == null) {
+					Log.d(Companion.TAG, "Objects: $objects")
+					Log.d(Companion.TAG, "Object name: " + objects[0]["invites"])
+					
+				} else {
+					Log.e(Companion.TAG, "Parse Error: ", e)
+				}
+			}
+			```
+		- (Create/Post) Remove userID in User invite array
+			 ```java
+			val query = ParseQuery<ParseObject>("Profile")
+			query.whereMatches("userID")
+			query.selectKeys(java.util.List.of("invites"))
+			query.removeInvite(otherUserID)
+			query.saveInBackground { objects: List<ParseObject>, e: ParseException? ->
+				if (e == null) {
+					Log.d(Companion.TAG, "Objects: $objects")
+					Log.d(Companion.TAG, "Object name: " + objects[0]["invites"])
+					
+				} else {
+					Log.e(Companion.TAG, "Parse Error: ", e)
+				}
+			}
+			```
+		- (Create/Post) Add userID in User friends array
+			```java
+			val query = ParseQuery<ParseObject>("Profile")
+			query.whereMatches("userID")
+			query.selectKeys(java.util.List.of("friends"))
+			query.addFriend(otherUserID)
+			query.saveInBackground { objects: List<ParseObject>, e: ParseException? ->
+				if (e == null) {
+					Log.d(Companion.TAG, "Objects: $objects")
+					Log.d(Companion.TAG, "Object name: " + objects[0]["friends"])
+					
+				} else {
+					Log.e(Companion.TAG, "Parse Error: ", e)
+				}
+			}
+			```
+									
+   - Settings
+		- (Read/Get) Create picture for profile
+			 ```java
+			val query = ParseQuery<ParseObject>("Profile")
+			query.whereMatches("userID")
+			query.selectKeys(java.util.List.of("profilePic"))
+			query.setPicture(picture)
+			query.saveInBackground { objects: List<ParseObject>, e: ParseException? ->
+				if (e == null) {
+					Log.d(Companion.TAG, "Objects: $objects")
+					Log.d(Companion.TAG, "Object name: " + objects[0]["profilePic"])
+					
+				} else {
+					Log.e(Companion.TAG, "Parse Error: ", e)
+				}
+			}
+			```
+		- (Create/POST) Create description for profile
+			 ```java
+			val query = ParseQuery<ParseObject>("Profile")
+			query.whereMatches("userID")
+			query.selectKeys(java.util.List.of("profileDescription"))
+			query.setDescription(description)
+			query.saveInBackground { objects: List<ParseObject>, e: ParseException? ->
+				if (e == null) {
+					Log.d(Companion.TAG, "Objects: $objects")
+					Log.d(Companion.TAG, "Object name: " + objects[0]["profileDescription"])
+					
+				} else {
+					Log.e(Companion.TAG, "Parse Error: ", e)
+				}
+			}
+			 ```
+   - Profile
+		- (Read/Get) Query user description
+			 ```java
+			val query = ParseQuery<ParseObject>("Profile")
+			query.whereMatches("userID")
+			query.selectKeys(java.util.List.of("profileDescription"))
+			query.findInBackground { objects: List<ParseObject>, e: ParseException? ->
+				if (e == null) {
+					Log.d(Companion.TAG, "Objects: $objects")
+					Log.d(Companion.TAG, "Object name: " + objects[0]["profileDescription"])
+				} else {
+					Log.e(Companion.TAG, "Parse Error: ", e)
+				}
+			}
+			```
+		- (Read/Get) Create picture for profile
+			 ```java
+			val query = ParseQuery<ParseObject>("Profile")
+			query.whereMatches("userID")
+			query.selectKeys(java.util.List.of("profilePic"))
+			query.setPicture(picture)
+			query.saveInBackground { objects: List<ParseObject>, e: ParseException? ->
+				if (e == null) {
+					Log.d(Companion.TAG, "Objects: $objects")
+					Log.d(Companion.TAG, "Object name: " + objects[0]["profilePic"])
+					
+				} else {
+					Log.e(Companion.TAG, "Parse Error: ", e)
+				}
+			}
+			```
+		- (Read/Get) Query username
+			 ```java
+			val query = ParseQuery<ParseObject>("Profile")
+			query.whereMatches("userID")
+			query.selectKeys(java.util.List.of("useername"))
+			query.findInBackground { objects: List<ParseObject>, e: ParseException? ->
+				if (e == null) {
+					Log.d(Companion.TAG, "Objects: $objects")
+					Log.d(Companion.TAG, "Object name: " + objects[0]["username"])
+				} else {
+					Log.e(Companion.TAG, "Parse Error: ", e)
+				}
+			}
+			```
+   - Friends
+		- (Read/Get) List of users friends
+			 ```java
+			val query = ParseQuery<ParseObject>("Profile")
+			query.whereMatches("userID")
+			query.selectKeys(java.util.List.of("friends"))
+			query.findInBackground { objects: List<ParseObject>, e: ParseException? ->
+				if (e == null) {
+					Log.d(Companion.TAG, "Objects: $objects")
+					Log.d(Companion.TAG, "Object name: " + objects[0]["friends"])
+				} else {
+					Log.e(Companion.TAG, "Parse Error: ", e)
+				}
+			}
+			```
+   - Chat List
+		- (Read/Get) List of friends
+			 ```java
+			val query = ParseQuery<ParseObject>("Profile")
+			query.whereMatches("userID")
+			query.selectKeys(java.util.List.of("friends"))
+			query.findInBackground { objects: List<ParseObject>, e: ParseException? ->
+				if (e == null) {
+					Log.d(Companion.TAG, "Objects: $objects")
+					Log.d(Companion.TAG, "Object name: " + objects[0]["friends"])
+				} else {
+					Log.e(Companion.TAG, "Parse Error: ", e)
+				}
+			}
+			```
+		- (Read/Get) Query username
+			 ```java
+			val query = ParseQuery<ParseObject>("Profile")
+			query.whereMatches("userID")
+			query.selectKeys(java.util.List.of("username"))
+			query.findInBackground { objects: List<ParseObject>, e: ParseException? ->
+				if (e == null) {
+					Log.d(Companion.TAG, "Objects: $objects")
+					Log.d(Companion.TAG, "Object name: " + objects[0]["username"])
+				} else {
+					Log.e(Companion.TAG, "Parse Error: ", e)
+				}
+			}
+			```
+		- (Read/Get) Query pic
+			 ```java
+			val query = ParseQuery<ParseObject>("Profile")
+			query.whereMatches("userID")
+			query.selectKeys(java.util.List.of("profilePic"))
+			query.findInBackground { objects: List<ParseObject>, e: ParseException? ->
+				if (e == null) {
+					Log.d(Companion.TAG, "Objects: $objects")
+					Log.d(Companion.TAG, "Object name: " + objects[0]["profilePic"])
+				} else {
+					Log.e(Companion.TAG, "Parse Error: ", e)
+				}
+			}
+			```
+   - Chat Message
+		- (Read/Get) Query username
+			 ```java
+			val query = ParseQuery<ParseObject>("Profile")
+			query.whereMatches("userID")
+			query.selectKeys(java.util.List.of("username"))
+			query.findInBackground { objects: List<ParseObject>, e: ParseException? ->
+				if (e == null) {
+					Log.d(Companion.TAG, "Objects: $objects")
+					Log.d(Companion.TAG, "Object name: " + objects[0]["username"])
+				} else {
+					Log.e(Companion.TAG, "Parse Error: ", e)
+				}
+			}
+			```
+		- (Read/Get) Query chat messages
+			 ```java
+			val query = ParseQuery<ParseObject>("userChat")
+			query.whereMatches("userID")
+			query.whereMatches("friendID")
+                        query.addDescendingOrder("objectId");
+			query.findInBackground { objects: List<ParseObject>, e: ParseException? ->
+				if (e == null) {
+					Log.d(Companion.TAG, "Objects: $objects")
+					Log.d(Companion.TAG, "Object name: " + objects[0]["chat"])
+				} else {
+					Log.e(Companion.TAG, "Parse Error: ", e)
+				}
+			}
+			```
+		- (Create/POST) Create new chat message
+			 ```java
+			val query = ParseQuery<ParseObject>("userChat")
+			query.whereMatches("userID")
+			query.whereMatches("friendID")
+                      	query.setMessage(message)
+			query.saveInBackground { objects: List<ParseObject>, e: ParseException? ->
+				if (e == null) {
+					Log.d(Companion.TAG, "Objects: $objects")
+					Log.d(Companion.TAG, "Object name: " + objects[0]["chat"])
+				} else {
+					Log.e(Companion.TAG, "Parse Error: ", e)
+				}
+			}
+			```	
+#### API Endpoints
+##### Spotify API
+- Base URL - [https://api.spotify.com/v1](https://api.spotify.com/v1)
+
+   HTTP Verb | Endpoint | Description
+   ----------|----------|------------
+    `GET`    | /me/top/type | Get User's Top Items
+    `GET`    | /users/user_id  | Get User's Profile
+    `GET`    | /me  | Get Current User's Profile
+    `GET`    | me/player | Get Playback State
+    `GET`    | me/following | Get Followed Artists
+    `GET`    | me/following/contains | Check If User Follows Artists or Users
