@@ -350,15 +350,7 @@ GIF created with [LiceCap](http://www.cockos.com/licecap/).
 				}
 			}
 			```
-		- (Create/POST) Create new chat message
-			 ```java
-			ParseObject newChatMessage   = new ParseObject("chatList ");
-			newChatMessage.set("chat", chat.toString());
-			newChatMessage.set("userid1", currentUserId);
-			newChatMessage.set("userid2", friendUserId);
-			newChatMessage.saveInBackground();
-			```
-		- (Create/POST) Create new chat message
+		- (Read/Get) Query chat messages
 			 ```java
 			val query = ParseQuery<ParseObject>("userChat")
 			query.whereMatches("userID")
@@ -373,6 +365,21 @@ GIF created with [LiceCap](http://www.cockos.com/licecap/).
 				}
 			}
 			```
+		- (Create/POST) Create new chat message
+			 ```java
+			val query = ParseQuery<ParseObject>("userChat")
+			query.whereMatches("userID")
+			query.whereMatches("friendID")
+                      	query.setMessage(message)
+			query.saveInBackground { objects: List<ParseObject>, e: ParseException? ->
+				if (e == null) {
+					Log.d(Companion.TAG, "Objects: $objects")
+					Log.d(Companion.TAG, "Object name: " + objects[0]["chat"])
+				} else {
+					Log.e(Companion.TAG, "Parse Error: ", e)
+				}
+			}
+			```	
 #### API Endpoints
 ##### Spotify API
 - Base URL - [https://api.spotify.com/v1](https://api.spotify.com/v1)
