@@ -136,31 +136,64 @@ GIF created with [LiceCap](http://www.cockos.com/licecap/).
 ### Networking
 #### List of network requests by screen
    - Home
-		- (Read/Get) Query all users user hasn’t matched with 
+		- (Read/Get) Query last swiped
 			 ```java
-			ParseQuery<UserID> query = ParseQuery.getQuery("UserList");
-			query.findInBackground(new FindCallback<ParseObject>() {
-				public void done(List<User> UserList, ParseException e) {
-					if (e == null) {
-						Log.d("score", "Retrieved " + userList.size() + " users");
-					} else {
-						Log.d("score", "Error: " + e.getMessage());
-					}
+			val query = ParseQuery<ParseObject>("Profile")
+			query.selectKeys(java.util.List.of("userID"))
+			query.findInBackground { objects: List<ParseObject>, e: ParseException? ->
+				if (e == null) {
+					Log.d(Companion.TAG, "Objects: $objects")
+					Log.d(Companion.TAG, "Object name: " + objects[0]["lastSwiped"])
+				} else {
+					Log.e(Companion.TAG, "Parse Error: ", e)
 				}
-			});
+			}
 
 			```
 		- (Create/Post) Add userID in User invite array
 			 ```java
-				Code here
+			val query = ParseQuery<ParseObject>("Profile")
+			query.selectKeys(java.util.List.of("userID"))
+			query.adddInvite(otherUserID)
+			query.saveInBackground { objects: List<ParseObject>, e: ParseException? ->
+				if (e == null) {
+					Log.d(Companion.TAG, "Objects: $objects")
+					Log.d(Companion.TAG, "Object name: " + objects[0]["invites"])
+					
+				} else {
+					Log.e(Companion.TAG, "Parse Error: ", e)
+				}
+			}
 			```
 		- (Create/Post) Remove userID in User invite array
 			 ```java
-				Code here
+			val query = ParseQuery<ParseObject>("Profile")
+			query.selectKeys(java.util.List.of("userID"))
+			query.removeInvite(otherUserID)
+			query.saveInBackground { objects: List<ParseObject>, e: ParseException? ->
+				if (e == null) {
+					Log.d(Companion.TAG, "Objects: $objects")
+					Log.d(Companion.TAG, "Object name: " + objects[0]["invites"])
+					
+				} else {
+					Log.e(Companion.TAG, "Parse Error: ", e)
+				}
+			}
 			```
 		- (Create/Post) Add userID in User friends array
-			 ```java
-				Code here
+			```java
+			val query = ParseQuery<ParseObject>("Profile")
+			query.selectKeys(java.util.List.of("userID"))
+			query.addFriend(otherUserID)
+			query.saveInBackground { objects: List<ParseObject>, e: ParseException? ->
+				if (e == null) {
+					Log.d(Companion.TAG, "Objects: $objects")
+					Log.d(Companion.TAG, "Object name: " + objects[0]["friends"])
+					
+				} else {
+					Log.e(Companion.TAG, "Parse Error: ", e)
+				}
+			}
 			```
 									
    - Settings
