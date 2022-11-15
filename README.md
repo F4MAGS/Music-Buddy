@@ -128,7 +128,6 @@ GIF created with [LiceCap](http://www.cockos.com/licecap/).
    | userId1    | int| this is the id of the user that is going to send the message  |
    | userId2  | int| this is the id of the user that is going to get the message |
    | chat  | String| this is the actual content of the chat (for example 'hi, how are you') |
-   |previousId	| int | we will need this to link the message to the previous message, so we will have an order when displaying the chat
    | createdAt    | DateTime | date when User is created (default field) |
 
 
