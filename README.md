@@ -138,7 +138,8 @@ GIF created with [LiceCap](http://www.cockos.com/licecap/).
 		- (Read/Get) Query last swiped
 			 ```java
 			val query = ParseQuery<ParseObject>("Profile")
-			query.selectKeys(java.util.List.of("userID"))
+			query.whereMatches("userID")
+			query.selectKeys(java.util.List.of("lastSwiped"))
 			query.findInBackground { objects: List<ParseObject>, e: ParseException? ->
 				if (e == null) {
 					Log.d(Companion.TAG, "Objects: $objects")
@@ -152,7 +153,8 @@ GIF created with [LiceCap](http://www.cockos.com/licecap/).
 		- (Create/Post) Add userID in User invite array
 			 ```java
 			val query = ParseQuery<ParseObject>("Profile")
-			query.selectKeys(java.util.List.of("userID"))
+			query.whereMatches("userID")
+			query.selectKeys(java.util.List.of("invites"))
 			query.adddInvite(otherUserID)
 			query.saveInBackground { objects: List<ParseObject>, e: ParseException? ->
 				if (e == null) {
@@ -167,7 +169,8 @@ GIF created with [LiceCap](http://www.cockos.com/licecap/).
 		- (Create/Post) Remove userID in User invite array
 			 ```java
 			val query = ParseQuery<ParseObject>("Profile")
-			query.selectKeys(java.util.List.of("userID"))
+			query.whereMatches("userID")
+			query.selectKeys(java.util.List.of("invites"))
 			query.removeInvite(otherUserID)
 			query.saveInBackground { objects: List<ParseObject>, e: ParseException? ->
 				if (e == null) {
@@ -182,7 +185,8 @@ GIF created with [LiceCap](http://www.cockos.com/licecap/).
 		- (Create/Post) Add userID in User friends array
 			```java
 			val query = ParseQuery<ParseObject>("Profile")
-			query.selectKeys(java.util.List.of("userID"))
+			query.whereMatches("userID")
+			query.selectKeys(java.util.List.of("friends"))
 			query.addFriend(otherUserID)
 			query.saveInBackground { objects: List<ParseObject>, e: ParseException? ->
 				if (e == null) {
@@ -199,7 +203,8 @@ GIF created with [LiceCap](http://www.cockos.com/licecap/).
 		- (Read/Get) Create picture for profile
 			 ```java
 			val query = ParseQuery<ParseObject>("Profile")
-			query.selectKeys(java.util.List.of("userID"))
+			query.whereMatches("userID")
+			query.selectKeys(java.util.List.of("profilePic"))
 			query.setPicture(picture)
 			query.saveInBackground { objects: List<ParseObject>, e: ParseException? ->
 				if (e == null) {
@@ -214,7 +219,8 @@ GIF created with [LiceCap](http://www.cockos.com/licecap/).
 		- (Create/POST) Create description for profile
 			 ```java
 			val query = ParseQuery<ParseObject>("Profile")
-			query.selectKeys(java.util.List.of("userID"))
+			query.whereMatches("userID")
+			query.selectKeys(java.util.List.of("profileDescription"))
 			query.setDescription(description)
 			query.saveInBackground { objects: List<ParseObject>, e: ParseException? ->
 				if (e == null) {
@@ -230,7 +236,8 @@ GIF created with [LiceCap](http://www.cockos.com/licecap/).
 		- (Read/Get) Query user description
 			 ```java
 			val query = ParseQuery<ParseObject>("Profile")
-			query.selectKeys(java.util.List.of("userID"))
+			query.whereMatches("userID")
+			query.selectKeys(java.util.List.of("profileDescription"))
 			query.findInBackground { objects: List<ParseObject>, e: ParseException? ->
 				if (e == null) {
 					Log.d(Companion.TAG, "Objects: $objects")
@@ -243,7 +250,8 @@ GIF created with [LiceCap](http://www.cockos.com/licecap/).
 		- (Read/Get) Create picture for profile
 			 ```java
 			val query = ParseQuery<ParseObject>("Profile")
-			query.selectKeys(java.util.List.of("userID"))
+			query.whereMatches("userID")
+			query.selectKeys(java.util.List.of("profilePic"))
 			query.setPicture(picture)
 			query.saveInBackground { objects: List<ParseObject>, e: ParseException? ->
 				if (e == null) {
@@ -258,7 +266,8 @@ GIF created with [LiceCap](http://www.cockos.com/licecap/).
 		- (Read/Get) Query username
 			 ```java
 			val query = ParseQuery<ParseObject>("Profile")
-			query.selectKeys(java.util.List.of("userID"))
+			query.whereMatches("userID")
+			query.selectKeys(java.util.List.of("useername"))
 			query.findInBackground { objects: List<ParseObject>, e: ParseException? ->
 				if (e == null) {
 					Log.d(Companion.TAG, "Objects: $objects")
@@ -272,7 +281,8 @@ GIF created with [LiceCap](http://www.cockos.com/licecap/).
 		- (Read/Get) List of users friends
 			 ```java
 			val query = ParseQuery<ParseObject>("Profile")
-			query.selectKeys(java.util.List.of("userID"))
+			query.whereMatches("userID")
+			query.selectKeys(java.util.List.of("friends"))
 			query.findInBackground { objects: List<ParseObject>, e: ParseException? ->
 				if (e == null) {
 					Log.d(Companion.TAG, "Objects: $objects")
@@ -286,7 +296,8 @@ GIF created with [LiceCap](http://www.cockos.com/licecap/).
 		- (Read/Get) List of friends
 			 ```java
 			val query = ParseQuery<ParseObject>("Profile")
-			query.selectKeys(java.util.List.of("userID"))
+			query.whereMatches("userID")
+			query.selectKeys(java.util.List.of("friends"))
 			query.findInBackground { objects: List<ParseObject>, e: ParseException? ->
 				if (e == null) {
 					Log.d(Companion.TAG, "Objects: $objects")
@@ -299,7 +310,8 @@ GIF created with [LiceCap](http://www.cockos.com/licecap/).
 		- (Read/Get) Query username
 			 ```java
 			val query = ParseQuery<ParseObject>("Profile")
-			query.selectKeys(java.util.List.of("userID"))
+			query.whereMatches("userID")
+			query.selectKeys(java.util.List.of("username"))
 			query.findInBackground { objects: List<ParseObject>, e: ParseException? ->
 				if (e == null) {
 					Log.d(Companion.TAG, "Objects: $objects")
@@ -312,7 +324,8 @@ GIF created with [LiceCap](http://www.cockos.com/licecap/).
 		- (Read/Get) Query pic
 			 ```java
 			val query = ParseQuery<ParseObject>("Profile")
-			query.selectKeys(java.util.List.of("userID"))
+			query.whereMatches("userID")
+			query.selectKeys(java.util.List.of("profilePic"))
 			query.findInBackground { objects: List<ParseObject>, e: ParseException? ->
 				if (e == null) {
 					Log.d(Companion.TAG, "Objects: $objects")
@@ -323,25 +336,11 @@ GIF created with [LiceCap](http://www.cockos.com/licecap/).
 			}
 			```
    - Chat Message
-		- (Read/Get) Query messages between two userID
-			 ```java
-			val query = ParseQuery<ParseObject>("userChat")
-			query.whereKey("userid1", equalTo: currentUser.id || userid2.id) &&
-			query.whereKey("userid1", equalTo: currentUser.id || userid2.id)
-			query.order(byDescending: "previousId")
-			query.findObjectsInBackground { (userChat: [id]?, error: Error?) in
-				if let error = error { 
-					print(error.localizedDescription)
-				} else if let userChat =userChat {
-					print("Successfully retrieved \userChat.")
-					// TODO: Do something.
-				}
-			}
-			```
 		- (Read/Get) Query username
 			 ```java
 			val query = ParseQuery<ParseObject>("Profile")
-			query.selectKeys(java.util.List.of("userID"))
+			query.whereMatches("userID")
+			query.selectKeys(java.util.List.of("username"))
 			query.findInBackground { objects: List<ParseObject>, e: ParseException? ->
 				if (e == null) {
 					Log.d(Companion.TAG, "Objects: $objects")
@@ -358,6 +357,21 @@ GIF created with [LiceCap](http://www.cockos.com/licecap/).
 			newChatMessage.set("userid1", currentUserId);
 			newChatMessage.set("userid2", friendUserId);
 			newChatMessage.saveInBackground();
+			```
+		- (Create/POST) Create new chat message
+			 ```java
+			val query = ParseQuery<ParseObject>("userChat")
+			query.whereMatches("userID")
+			query.whereMatches("friendID")
+                        query.addDescendingOrder("objectId");
+			query.findInBackground { objects: List<ParseObject>, e: ParseException? ->
+				if (e == null) {
+					Log.d(Companion.TAG, "Objects: $objects")
+					Log.d(Companion.TAG, "Object name: " + objects[0]["chat"])
+				} else {
+					Log.e(Companion.TAG, "Parse Error: ", e)
+				}
+			}
 			```
 #### API Endpoints
 ##### Spotify API
