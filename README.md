@@ -166,55 +166,71 @@ GIF created with [LiceCap](http://www.cockos.com/licecap/).
    - Settings
 		- (Read/Get) Create picture for profile
 			 ```java
-			let query = PFQuery(className:"username")
-			query.whereKey("id", equalTo: currentUser.id())
-			query.findObjectsInBackground { (user: [profilePic]?, error: Error?) in
-				if let error = error { 
-					print(error.localizedDescription)
-				} else if let user =user {
-					print("Successfully retrieved \user.")
+			val query = ParseQuery<ParseObject>("Profile")
+			query.selectKeys(java.util.List.of("userID"))
+			query.setPicture(picture)
+			query.saveInBackground { objects: List<ParseObject>, e: ParseException? ->
+				if (e == null) {
+					Log.d(Companion.TAG, "Objects: $objects")
+					Log.d(Companion.TAG, "Object name: " + objects[0]["profilePic"])
+					
+				} else {
+					Log.e(Companion.TAG, "Parse Error: ", e)
 				}
 			}
 			```
 		- (Create/POST) Create description for profile
 			 ```java
-			ParseObject profileDescription   = new ParseObject("profileDescription ");
-			profileDescription.put("content", "myBio.");
-			profileDescription .saveInBackground();
+			val query = ParseQuery<ParseObject>("Profile")
+			query.selectKeys(java.util.List.of("userID"))
+			query.setDescription(description)
+			query.saveInBackground { objects: List<ParseObject>, e: ParseException? ->
+				if (e == null) {
+					Log.d(Companion.TAG, "Objects: $objects")
+					Log.d(Companion.TAG, "Object name: " + objects[0]["profileDescription"])
+					
+				} else {
+					Log.e(Companion.TAG, "Parse Error: ", e)
+				}
+			}
 			 ```
    - Profile
 		- (Read/Get) Query user description
-			 ```java
-			val query = ParseQuery<ParseObject>("User")
-			query.whereMatches(currentUser.id)
-			query.findInBackground {description, e: ParseException? ->
-				if (e == null) {
-					Log.d(Companion.TAG, "Objects: description")
-				} else {
-					og.e(Companion.TAG, "Parse Error: ", e)
-				}
-			}
-			```
-		- (Read/Get) Create picture for profile
-			 ```java
-				let query = PFQuery(className:"user")
-				query.whereKey("id", equalTo: currentUser.id())
-				query.findObjectsInBackground { (user: [profilePic]?, error: Error?) in
-				if let error = error { 
-					print(error.localizedDescription)
-				}	else if let user =user {
-					print("Successfully retrieved \user.")
-				}
-			}
-			```
-		- (Read/Get) Query username for profile
 			 ```java
 			val query = ParseQuery<ParseObject>("Profile")
 			query.selectKeys(java.util.List.of("userID"))
 			query.findInBackground { objects: List<ParseObject>, e: ParseException? ->
 				if (e == null) {
 					Log.d(Companion.TAG, "Objects: $objects")
-					Log.d(Companion.TAG, "Object name: " + objects[0]["name"])
+					Log.d(Companion.TAG, "Object name: " + objects[0]["profileDescription"])
+				} else {
+					Log.e(Companion.TAG, "Parse Error: ", e)
+				}
+			}
+			```
+		- (Read/Get) Create picture for profile
+			 ```java
+			val query = ParseQuery<ParseObject>("Profile")
+			query.selectKeys(java.util.List.of("userID"))
+			query.setPicture(picture)
+			query.saveInBackground { objects: List<ParseObject>, e: ParseException? ->
+				if (e == null) {
+					Log.d(Companion.TAG, "Objects: $objects")
+					Log.d(Companion.TAG, "Object name: " + objects[0]["profilePic"])
+					
+				} else {
+					Log.e(Companion.TAG, "Parse Error: ", e)
+				}
+			}
+			```
+		- (Read/Get) Query username
+			 ```java
+			val query = ParseQuery<ParseObject>("Profile")
+			query.selectKeys(java.util.List.of("userID"))
+			query.findInBackground { objects: List<ParseObject>, e: ParseException? ->
+				if (e == null) {
+					Log.d(Companion.TAG, "Objects: $objects")
+					Log.d(Companion.TAG, "Object name: " + objects[0]["username"])
 				} else {
 					Log.e(Companion.TAG, "Parse Error: ", e)
 				}
@@ -223,50 +239,54 @@ GIF created with [LiceCap](http://www.cockos.com/licecap/).
    - Friends
 		- (Read/Get) List of users friends
 			 ```java
-			val query = ParseUser.getQuery()
-			query.findInBackground {friends, e ->
+			val query = ParseQuery<ParseObject>("Profile")
+			query.selectKeys(java.util.List.of("userID"))
+			query.findInBackground { objects: List<ParseObject>, e: ParseException? ->
 				if (e == null) {
-					// The query was successful.
+					Log.d(Companion.TAG, "Objects: $objects")
+					Log.d(Companion.TAG, "Object name: " + objects[0]["friends"])
 				} else {
-					// Something went wrong.
+					Log.e(Companion.TAG, "Parse Error: ", e)
 				}
 			}
 			```
    - Chat List
-		- (Read/Get) List of users friends
+		- (Read/Get) List of friends
 			 ```java
-			val query = ParseUser.getQuery()
-			query.findInBackground {friends, e ->
+			val query = ParseQuery<ParseObject>("Profile")
+			query.selectKeys(java.util.List.of("userID"))
+			query.findInBackground { objects: List<ParseObject>, e: ParseException? ->
 				if (e == null) {
-					// The query was successful.
+					Log.d(Companion.TAG, "Objects: $objects")
+					Log.d(Companion.TAG, "Object name: " + objects[0]["friends"])
 				} else {
-					// Something went wrong.
+					Log.e(Companion.TAG, "Parse Error: ", e)
 				}
 			}
 			```
-		- (Read/Get) Query username for friend
+		- (Read/Get) Query username
 			 ```java
-			let query = PFQuery(className:"user")
-			query.whereKey("id", equalTo:friend.id())
-			query.findObjectsInBackground { (user: [username]?, error: Error?) in
-				if let error = error { 
-					print(error.localizedDescription)
-				} else if let user =user {
-					print("Successfully retrieved \user.")
-					// TODO: Do something.
+			val query = ParseQuery<ParseObject>("Profile")
+			query.selectKeys(java.util.List.of("userID"))
+			query.findInBackground { objects: List<ParseObject>, e: ParseException? ->
+				if (e == null) {
+					Log.d(Companion.TAG, "Objects: $objects")
+					Log.d(Companion.TAG, "Object name: " + objects[0]["username"])
+				} else {
+					Log.e(Companion.TAG, "Parse Error: ", e)
 				}
 			}
 			```
-		- (Read/Get) Query pic for friend
+		- (Read/Get) Query pic
 			 ```java
-			let query = PFQuery(className:"user")
-			query.whereKey("id", equalTo:friend.id())
-			query.findObjectsInBackground { (user: [username]?, error: Error?) in
-				if let error = error { 
-					print(error.localizedDescription)
-				} else if let user =user {
-					print("Successfully retrieved \user.")
-					// TODO: Do something.
+			val query = ParseQuery<ParseObject>("Profile")
+			query.selectKeys(java.util.List.of("userID"))
+			query.findInBackground { objects: List<ParseObject>, e: ParseException? ->
+				if (e == null) {
+					Log.d(Companion.TAG, "Objects: $objects")
+					Log.d(Companion.TAG, "Object name: " + objects[0]["profilePic"])
+				} else {
+					Log.e(Companion.TAG, "Parse Error: ", e)
 				}
 			}
 			```
@@ -286,20 +306,20 @@ GIF created with [LiceCap](http://www.cockos.com/licecap/).
 				}
 			}
 			```
-		- (Read/Get) Query username for user
+		- (Read/Get) Query username
 			 ```java
 			val query = ParseQuery<ParseObject>("Profile")
 			query.selectKeys(java.util.List.of("userID"))
 			query.findInBackground { objects: List<ParseObject>, e: ParseException? ->
 				if (e == null) {
 					Log.d(Companion.TAG, "Objects: $objects")
-					Log.d(Companion.TAG, "Object name: " + objects[0]["name"])
+					Log.d(Companion.TAG, "Object name: " + objects[0]["username"])
 				} else {
 					Log.e(Companion.TAG, "Parse Error: ", e)
 				}
 			}
 			```
-		- (Read/Get) Query profile for user
+		- (Create/POST) Create new chat message
 			 ```java
 			let query = PFQuery(className:"user")
 			query.whereKey("id", equalTo: userId2.id())
@@ -310,9 +330,7 @@ GIF created with [LiceCap](http://www.cockos.com/licecap/).
 					print("Successfully retrieved user.")
 				}
 			}
-
 			```
-
 #### API Endpoints
 ##### Spotify API
 - Base URL - [https://api.spotify.com/v1](https://api.spotify.com/v1)
