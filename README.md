@@ -150,6 +150,19 @@ GIF created with [LiceCap](http://www.cockos.com/licecap/).
 			});
 
 			```
+		- (Read/Get) Add userID in User invite array
+			 ```java
+				Code here
+			```
+		- (Read/Get) Remove userID in User invite array
+			 ```java
+				Code here
+			```
+		- (Read/Get) Add userID in User friends array
+			 ```java
+				Code here
+			```
+									
    - Settings
 		- (Read/Get) Create picture for profile
 			 ```java
