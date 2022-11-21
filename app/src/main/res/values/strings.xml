@@ -1,6 +1,11 @@
 <resources>
     <string name="app_name">Music-Buddy</string>
     <string name="state_label">select state</string>
+    <string name="back4app_server_url">https://parseapi.back4app.com/</string>
+
+    <!-- Paste BOTH strings as required -->
+    <string name="back4app_app_id">jw2n9oQMh31FVEgJLoAPa0lSHvj4IDIxfKV4PuLe</string>
+    <string name="back4app_client_key">gSAdlUbnC8EoSMBPSXfZ5J2FgZfeiYPssuQvad94</string>
     <string-array name="States_array">
         <item>	AL	</item>
         <item>	AK	</item>
@@ -57,10 +62,6 @@
         <item>	WV	</item>
         <item>	WI	</item>
         <item>	WY	</item>
-        <string name="back4app_server_url">https://parseapi.back4app.com/</string>
 
-        <!-- Paste BOTH strings as required -->
-        <string name="back4app_app_id">jw2n9oQMh31FVEgJLoAPa0lSHvj4IDIxfKV4PuLe</string>
-        <string name="back4app_client_key">gSAdlUbnC8EoSMBPSXfZ5J2FgZfeiYPssuQvad94</string>
     </string-array>
 </resources>
