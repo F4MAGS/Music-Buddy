@@ -108,27 +108,28 @@ GIF created with [LiceCap](http://www.cockos.com/licecap/).
 ## Schema 
 ### Models
 #### User
-  | Property          | Type     | Description |
+| Property          | Type     | Description |
    | -------------       | -------- | ------------|
-   | userID            | int       | unique id for the user (default field and auto) |
-   | username      | String  | name the user chooses from spotify or create in the app when first sign in|
-   | userAge        | int        | user age |
-   | location         | String   | the state where the user is located|
-   | profilePic       | File      | user profile pic from spotify or uploaded himself/herself|
-   | profileDescription  | String   | User bio/description |
-   | invites           | User[] (array of userID)  | invites an user has |  
-   | friends           | User[] (array of userID)  | friends an user has |  
-   | createdAt      | DateTime     | date when User is created (default field) |
-   | lastSwiped    | int               |  Highest userID seen |
+| objectId            | String       | unique id for the user (default field and auto) |
+| username      | String  | name the user chooses from spotify or create in the app when first sign in|
+| userAge        | int        | user age |
+| location         | String   | the state where the user is located|
+| profilePic       | File      | user profile pic from spotify or uploaded himself/herself|
+| profileDescription  | String   | User bio/description |
+| invites           | User[] (array of userID)  | invites an user has |  
+| friends           | User[] (array of userID)  | friends an user has |  
+| createdAt      | DateTime     | date when User is created (default field) |
+| lastSwiped    | int               |  Highest userID seen |
+| customPic    | Boolean      | True if user wants their custom picture chosen |
 
 #### userChat
 | Property      | Type     | Description |
    | ------------- | -------- | ------------|
-   | objectId      | int    | unique id for conversations (default increasing)|
-   | userId1    | int| this is the id of the user that is going to send the message  |
-   | userId2  | int| this is the id of the user that is going to get the message |
-   | chat  | String| this is the actual content of the chat (for example 'hi, how are you') |
-   | createdAt    | DateTime | date when User is created (default field) |
+| objectId      | String    | unique id for conversations (default increasing)|
+| userOne    | String| this is the id of the user that is going to send the message  |
+| userTwo  | String| this is the id of the user that is going to get the message |
+| chatText  | String| this is the actual content of the chat (for example 'hi, how are you') |
+| createdAt    | DateTime | date when User is created (default field) |
 
 
 

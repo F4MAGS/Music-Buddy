@@ -3,8 +3,22 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="app/src/main/res/layout/fragment_main.xml" value="0.2385574340820312" />
-        <entry key="app/src/main/res/layout/settings.xml" value="0.20993957519531248" />
+        <entry key="..\:/Programs/AndroidDevClass/Music-Buddy/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.3335" />
+        <entry key="..\:/Programs/AndroidDevClass/Music-Buddy/app/src/main/res/drawable/gradient_background.xml" value="0.3335" />
+        <entry key="..\:/Programs/AndroidDevClass/Music-Buddy/app/src/main/res/drawable/ic_launcher_background.xml" value="0.3335" />
+        <entry key="..\:/Programs/AndroidDevClass/Music-Buddy/app/src/main/res/layout/activity_chats.xml" value="0.3385416666666667" />
+        <entry key="..\:/Programs/AndroidDevClass/Music-Buddy/app/src/main/res/layout/activity_friends.xml" value="0.3385416666666667" />
+        <entry key="..\:/Programs/AndroidDevClass/Music-Buddy/app/src/main/res/layout/activity_home.xml" value="0.3385416666666667" />
+        <entry key="..\:/Programs/AndroidDevClass/Music-Buddy/app/src/main/res/layout/activity_main.xml" value="0.3385416666666667" />
+        <entry key="..\:/Programs/AndroidDevClass/Music-Buddy/app/src/main/res/layout/activity_message.xml" value="0.3385416666666667" />
+        <entry key="..\:/Programs/AndroidDevClass/Music-Buddy/app/src/main/res/layout/activity_profile.xml" value="0.3385416666666667" />
+        <entry key="..\:/Programs/AndroidDevClass/Music-Buddy/app/src/main/res/layout/bottom_navigation.xml" value="0.3375" />
+        <entry key="..\:/Programs/AndroidDevClass/Music-Buddy/app/src/main/res/layout/bottom_return.xml" value="0.3375" />
+        <entry key="..\:/Programs/AndroidDevClass/Music-Buddy/app/src/main/res/layout/fragment_main.xml" value="0.3385416666666667" />
+        <entry key="..\:/Programs/AndroidDevClass/Music-Buddy/app/src/main/res/layout/menu_top_navigation.xml" value="0.3385416666666667" />
+        <entry key="..\:/Programs/AndroidDevClass/Music-Buddy/app/src/main/res/layout/settings.xml" value="0.3385416666666667" />
+        <entry key="..\:/Programs/AndroidDevClass/Music-Buddy/app/src/main/res/layout/top_navigation.xml" value="0.28125" />
+        <entry key="..\:/Programs/AndroidDevClass/Music-Buddy/app/src/main/res/menu/menu_bottom_navigation.xml" value="0.3375" />
       </map>
     </option>
   </component>
