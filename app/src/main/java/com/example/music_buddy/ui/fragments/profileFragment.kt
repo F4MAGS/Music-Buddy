@@ -11,10 +11,10 @@ import android.widget.Button
 import com.example.music_buddy.R
 import com.example.music_buddy.settings
 
-class MainFragment : Fragment() {
+class profileFragment : Fragment() {
 
     companion object {
-        fun newInstance() = MainFragment()
+        fun newInstance() = profileFragment()
     }
 
     private lateinit var viewModel: MainViewModel
