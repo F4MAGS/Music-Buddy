@@ -17,6 +17,13 @@
         android:theme="@style/Theme.MusicBuddy"
         tools:targetApi="31">
         <activity
+            android:name=".LoginActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".MessageActivity"
             android:exported="false" />
         <activity
