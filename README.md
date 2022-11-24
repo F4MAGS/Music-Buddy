@@ -393,3 +393,23 @@ GIF created with [LiceCap](http://www.cockos.com/licecap/).
     `GET`    | me/player | Get Playback State
     `GET`    | me/following | Get Followed Artists
     `GET`    | me/following/contains | Check If User Follows Artists or Users
+	
+	## Milestones
+
+### Sprint-1
+
+#### Stories
+- [x] [Create top app bar](https://github.com/F4MAGS/Music-Buddy/issues/18)
+- [x] [Create Parse Page](https://github.com/F4MAGS/Music-Buddy/issues/25)
+- [x] [Create bottom XML navigation bar](https://github.com/F4MAGS/Music-Buddy/issues/20)
+- [x] [Create Simple XML Template for the Homepage](https://github.com/F4MAGS/Music-Buddy/issues/4)
+- [x] [Create Profile and Home XML  ](https://github.com/F4MAGS/Music-Buddy/issues/15)
+- [x] [show location (state) selection in Settings page](https://github.com/F4MAGS/Music-Buddy/issues/12)
+- [x] [Ability to select user age in settings page ](https://github.com/F4MAGS/Music-Buddy/issues/13)	
+- [x] [User can create a bio in the settings page](https://github.com/F4MAGS/Music-Buddy/issues/14)	
+- [x] [Use spotify API to allow user to use OAuth Authentication](https://github.com/F4MAGS/Music-Buddy/issues/7)	
+#### GIF(s)
+
+<img src='sprint1.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+
+GIF created with [LiceCap](http://www.cockos.com/licecap/).
