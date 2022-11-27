@@ -2,6 +2,7 @@
 package com.example.music_buddy
 import android.app.Application
 import com.parse.Parse
+import com.parse.ParseObject
 
 class MusicBuddyApplication : Application(){
     override fun onCreate() {
