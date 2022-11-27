@@ -108,27 +108,28 @@ GIF created with [LiceCap](http://www.cockos.com/licecap/).
 ## Schema 
 ### Models
 #### User
-  | Property          | Type     | Description |
+| Property          | Type     | Description |
    | -------------       | -------- | ------------|
-   | userID            | int       | unique id for the user (default field and auto) |
-   | username      | String  | name the user chooses from spotify or create in the app when first sign in|
-   | userAge        | int        | user age |
-   | location         | String   | the state where the user is located|
-   | profilePic       | File      | user profile pic from spotify or uploaded himself/herself|
-   | profileDescription  | String   | User bio/description |
-   | invites           | User[] (array of userID)  | invites an user has |  
-   | friends           | User[] (array of userID)  | friends an user has |  
-   | createdAt      | DateTime     | date when User is created (default field) |
-   | lastSwiped    | int               |  Highest userID seen |
+| objectId            | String       | unique id for the user (default field and auto) |
+| username      | String  | name the user chooses from spotify or create in the app when first sign in|
+| userAge        | int        | user age |
+| location         | String   | the state where the user is located|
+| profilePic       | File      | user profile pic from spotify or uploaded himself/herself|
+| profileDescription  | String   | User bio/description |
+| invites           | User[] (array of userID)  | invites an user has |  
+| friends           | User[] (array of userID)  | friends an user has |  
+| createdAt      | DateTime     | date when User is created (default field) |
+| lastSwiped    | int               |  Highest userID seen |
+| customPic    | Boolean      | True if user wants their custom picture chosen |
 
 #### userChat
 | Property      | Type     | Description |
    | ------------- | -------- | ------------|
-   | objectId      | int    | unique id for conversations (default increasing)|
-   | userId1    | int| this is the id of the user that is going to send the message  |
-   | userId2  | int| this is the id of the user that is going to get the message |
-   | chat  | String| this is the actual content of the chat (for example 'hi, how are you') |
-   | createdAt    | DateTime | date when User is created (default field) |
+| objectId      | String    | unique id for conversations (default increasing)|
+| userOne    | String| this is the id of the user that is going to send the message  |
+| userTwo  | String| this is the id of the user that is going to get the message |
+| chatText  | String| this is the actual content of the chat (for example 'hi, how are you') |
+| createdAt    | DateTime | date when User is created (default field) |
 
 
 
@@ -392,3 +393,23 @@ GIF created with [LiceCap](http://www.cockos.com/licecap/).
     `GET`    | me/player | Get Playback State
     `GET`    | me/following | Get Followed Artists
     `GET`    | me/following/contains | Check If User Follows Artists or Users
+	
+	## Milestones
+
+### Sprint-1
+
+#### Stories
+- [x] [Create top app bar](https://github.com/F4MAGS/Music-Buddy/issues/18)
+- [x] [Create Parse Page](https://github.com/F4MAGS/Music-Buddy/issues/25)
+- [x] [Create bottom XML navigation bar](https://github.com/F4MAGS/Music-Buddy/issues/20)
+- [x] [Create Simple XML Template for the Homepage](https://github.com/F4MAGS/Music-Buddy/issues/4)
+- [x] [Create Profile and Home XML  ](https://github.com/F4MAGS/Music-Buddy/issues/15)
+- [x] [show location (state) selection in Settings page](https://github.com/F4MAGS/Music-Buddy/issues/12)
+- [x] [Ability to select user age in settings page ](https://github.com/F4MAGS/Music-Buddy/issues/13)	
+- [x] [User can create a bio in the settings page](https://github.com/F4MAGS/Music-Buddy/issues/14)	
+- [x] [Use spotify API to allow user to use OAuth Authentication](https://github.com/F4MAGS/Music-Buddy/issues/7)	
+#### GIF(s)
+
+<img src='sprint1.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+
+GIF created with [LiceCap](http://www.cockos.com/licecap/).

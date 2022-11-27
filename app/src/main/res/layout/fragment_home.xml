@@ -4,28 +4,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.fragments.profileFragment">
-
-    tools:context=".ui.fragments.MainFragment"
-    android:background="@drawable/gradient_background"
+    android:layout_height="wrap_content"
+    tools:context=".ui.fragments.profileFragment"
     >
 
-    <include
-        android:id="@+id/rl_bottomBar"
-        layout="@layout/bottom_navigation" />
-
-    <include layout="@layout/top_navigation"
-        android:id="@+id/rl_topBar"/>
 
     <TextView
         android:id="@+id/Username"
         android:layout_width="match_parent"
         android:layout_height="45dp"
-        android:layout_marginTop="14dp"
-        android:layout_marginBottom="14dp"
+        android:layout_below="@+id/rl_topBar"
         android:layout_marginLeft="85dp"
+        android:layout_marginTop="14dp"
         android:layout_marginRight="85dp"
+        android:layout_marginBottom="14dp"
         android:background="@drawable/rounded_corners"
         android:paddingTop="3dp"
         android:text="Username"
@@ -95,14 +87,7 @@
         android:paddingTop="26dp"
         android:text="Phasellus consectetur justo a sem tincidunt elementum. Etiam et nulla at odio luctus accumsan. Nunc volutpat orci a lobortis luctus. Suspendisse in tristique urna. Curabitur sollicitudin nulla fermentum, malesuada nunc in, fringilla odio. Nullam ultricies risus a velit egestas suscipit. Nulla facilisi."
         android:textAlignment="center" />
-        android:layout_below="@+id/rl_topBar"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginStart="99dp"
-        android:layout_marginTop="143dp"
-        android:layout_marginEnd="205dp"
-        android:text="MainFragment"
-        app:layout_constraintTop_toTopOf="parent" />
+
 
     <ImageView
         android:id="@+id/artist_1_img"
@@ -110,6 +95,7 @@
         android:layout_height="45dp"
         android:layout_below="@+id/profilePic"
         tools:src="@tools:sample/avatars" />
+
 
     <ImageView
         android:id="@+id/artist_3_img"
@@ -124,5 +110,27 @@
         android:layout_height="45dp"
         android:layout_below="@id/artist_1_img"
         tools:src="@tools:sample/avatars" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:layout_below="@id/bio">
+
+
+        <Button
+            android:id="@+id/next"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Add friend" />
+        <Button
+            android:id="@+id/add_friend"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="next" />
+    </LinearLayout>
+
 
 </android.widget.RelativeLayout>
