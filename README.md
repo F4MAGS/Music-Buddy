@@ -412,4 +412,8 @@ GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
 <img src='sprint1.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
+Settings page gif
+<img src='SettingsActivityDemo/settings.gif' title='Settings' width='' alt='Settings walkthrough' />
+<img src='SettingsActivityDemo/parseDBafterdemo.png' title='Settings' width='' alt='Parse db after setting' />
+
 GIF created with [LiceCap](http://www.cockos.com/licecap/).

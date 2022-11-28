@@ -9,7 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import com.example.music_buddy.R
-import com.example.music_buddy.settings
+import com.example.music_buddy.SettingsActivity
 
 class profileFragment : Fragment() {
 
