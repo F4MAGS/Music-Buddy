@@ -25,7 +25,7 @@
         android:textSize="30dp" />
 
     <Button
-    android:id="@+id/button"
+    android:id="@+id/settingsbtn"
     android:layout_width="80dp"
     android:layout_height="wrap_content"
     android:layout_marginStart="-70dp"
