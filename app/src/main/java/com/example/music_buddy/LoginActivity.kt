@@ -22,9 +22,10 @@ class LoginActivity : AppCompatActivity() {
 
         findViewById<Button>(R.id.loginBtn).setOnClickListener {
             SpotifyService.connect(this) {
-                val intent = Intent(this, LoginActivity::class.java)
+                val intent = Intent(this, HomeActivity::class.java)
                 startActivity(intent)
             }
         }
     }
+
 }
