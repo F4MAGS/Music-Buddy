@@ -6,7 +6,6 @@ package com.example.music_buddy
 
 
 
-import android.bluetooth.BluetoothAdapter.ERROR
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
@@ -24,7 +23,15 @@ class LoginActivity : AppCompatActivity() {
             SpotifyService.connect(this) {
                 val intent = Intent(this, LoginActivity::class.java)
                 startActivity(intent)
+                if(it) {
+                    redirectHome()
+                }
             }
         }
+    }
+
+    private fun redirectHome() {
+        val intent = Intent(this, HomeActivity::class.java)
+        startActivity(intent)
     }
 }
