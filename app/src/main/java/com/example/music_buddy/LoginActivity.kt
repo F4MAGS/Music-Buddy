@@ -30,11 +30,10 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-//<<<<<<< setting_page
-//=======
+
     private fun redirectHome() {
-        val intent = Intent(this, HomeActivity::class.java)
+        val intent = Intent(this, SettingsActivity::class.java)
         startActivity(intent)
     }
-//>>>>>>> main
+
 }
