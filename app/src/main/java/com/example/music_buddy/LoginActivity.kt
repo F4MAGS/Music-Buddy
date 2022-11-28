@@ -21,7 +21,7 @@ class LoginActivity : AppCompatActivity() {
 
         findViewById<Button>(R.id.loginBtn).setOnClickListener {
             SpotifyService.connect(this) {
-                val intent = Intent(this, LoginActivity::class.java)
+                val intent = Intent(this, HomeActivity::class.java)
                 startActivity(intent)
                 if(it) {
                     redirectHome()
@@ -30,8 +30,11 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
+//<<<<<<< setting_page
+//=======
     private fun redirectHome() {
         val intent = Intent(this, HomeActivity::class.java)
         startActivity(intent)
     }
+//>>>>>>> main
 }

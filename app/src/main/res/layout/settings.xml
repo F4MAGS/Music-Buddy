@@ -11,11 +11,11 @@
         android:id="@+id/profile_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
         android:layout_marginTop="50dp"
         android:text="profile picture"
+        android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/et_username"
+        app:layout_constraintStart_toEndOf="@+id/username"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
@@ -23,6 +23,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="50dp"
+        android:textColor="@color/white"
         android:layout_marginEnd="50dp"
         android:ems="10"
         android:gravity="start|top"
@@ -39,6 +40,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="80dp"
+        android:textColor="@color/white"
         android:text="save"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -46,10 +48,12 @@
 
     <EditText
         android:id="@+id/et_username"
+        android:maxLength="21"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="@color/white"
         android:layout_marginStart="48dp"
-        android:layout_marginTop="130dp"
+        android:layout_marginTop="140dp"
         android:minHeight="48dp"
         android:text="user123"
         app:layout_constraintStart_toStartOf="parent"
@@ -59,6 +63,7 @@
         android:id="@+id/username"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="@color/white"
         android:layout_marginStart="48dp"
         android:text="Username"
         app:layout_constraintBottom_toTopOf="@+id/et_username"
@@ -67,6 +72,7 @@
     <Spinner
         android:id="@+id/states"
         android:layout_width="wrap_content"
+        android:textColor="@color/white"
         android:layout_height="wrap_content"
         android:layout_marginStart="48dp"
         app:layout_constraintStart_toStartOf="parent"
@@ -75,9 +81,10 @@
     <TextView
         android:id="@+id/bio_label"
         android:layout_width="wrap_content"
+        android:textColor="@color/white"
         android:layout_height="wrap_content"
         android:layout_marginStart="48dp"
-        android:layout_marginTop="44dp"
+        android:layout_marginTop="60dp"
         android:text="bio:"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/et_username" />
@@ -85,6 +92,7 @@
     <TextView
         android:id="@+id/location_label"
         android:layout_width="wrap_content"
+        android:textColor="@color/white"
         android:layout_height="wrap_content"
         android:layout_marginStart="48dp"
         android:layout_marginTop="44dp"
@@ -95,6 +103,7 @@
     <Spinner
         android:id="@+id/age"
         android:layout_width="wrap_content"
+        android:textColor="@color/white"
         android:layout_height="wrap_content"
         android:layout_marginStart="48dp"
         app:layout_constraintStart_toStartOf="parent"
@@ -103,6 +112,7 @@
     <TextView
         android:id="@+id/age_label"
         android:layout_width="wrap_content"
+        android:textColor="@color/white"
         android:layout_height="wrap_content"
         android:layout_marginStart="48dp"
         android:layout_marginTop="44dp"
@@ -114,10 +124,20 @@
         android:id="@+id/profilePic_img"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/et_username"
+        app:layout_constraintStart_toEndOf="@+id/username"
         app:layout_constraintTop_toBottomOf="@+id/profile_label"
         tools:srcCompat="@tools:sample/avatars" />
+
+    <Button
+        android:id="@+id/bt_takePicture"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Take Picture"
+        android:textColor="@color/white"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/username"
+        app:layout_constraintTop_toBottomOf="@+id/profilePic_img" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
