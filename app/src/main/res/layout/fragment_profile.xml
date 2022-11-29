@@ -10,6 +10,7 @@
 
 
     <TextView
+        android:textColor="@color/white"
         android:id="@+id/Username"
         android:layout_width="match_parent"
         android:layout_height="45dp"
@@ -25,7 +26,7 @@
         android:textSize="30dp" />
 
     <Button
-    android:id="@+id/button"
+    android:id="@+id/settingsbtn"
     android:layout_width="80dp"
     android:layout_height="wrap_content"
     android:layout_marginStart="-70dp"
@@ -43,6 +44,7 @@
         tools:src="@tools:sample/avatars" />
 
     <TextView
+        android:textColor="@color/white"
         android:id="@+id/artist_1"
         android:layout_width="match_parent"
         android:layout_height="45dp"
@@ -57,6 +59,7 @@
         tools:layout_editor_absoluteX="61dp" />
 
     <TextView
+        android:textColor="@color/white"
         android:id="@+id/artist_2"
         android:layout_width="match_parent"
         android:layout_height="45dp"
@@ -71,6 +74,7 @@
         tools:layout_editor_absoluteX="61dp" />
 
     <TextView
+        android:textColor="@color/white"
         android:id="@+id/artist_3"
         android:layout_width="match_parent"
         android:layout_height="45dp"
@@ -85,6 +89,7 @@
         tools:layout_editor_absoluteX="61dp" />
 
     <TextView
+        android:textColor="@color/white"
         android:id="@+id/bio"
         android:layout_width="match_parent"
         android:layout_height="150dp"

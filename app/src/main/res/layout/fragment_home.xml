@@ -10,6 +10,7 @@
 
 
     <TextView
+        android:textColor="@color/white"
         android:id="@+id/Username"
         android:layout_width="match_parent"
         android:layout_height="45dp"
@@ -34,20 +35,22 @@
         tools:src="@tools:sample/avatars" />
 
     <TextView
+        android:textColor="@color/white"
         android:id="@+id/artist_1"
         android:layout_width="match_parent"
         android:layout_height="45dp"
         android:layout_below="@+id/profilePic"
-        android:text="Artist number 1"
-        android:textSize="25dp"
         android:layout_marginLeft="80dp"
         android:layout_marginRight="20dp"
+        android:background="@drawable/rounded_corners"
         android:paddingLeft="60dp"
         android:paddingTop="3dp"
-        android:background="@drawable/rounded_corners"
+        android:text="Artist number 1"
+        android:textSize="25dp"
         tools:layout_editor_absoluteX="61dp" />
 
     <TextView
+        android:textColor="@color/white"
         android:id="@+id/artist_2"
         android:layout_width="match_parent"
         android:layout_height="45dp"
@@ -62,6 +65,7 @@
         tools:layout_editor_absoluteX="61dp" />
 
     <TextView
+        android:textColor="@color/white"
         android:id="@+id/artist_3"
         android:layout_width="match_parent"
         android:layout_height="45dp"
@@ -76,13 +80,14 @@
         tools:layout_editor_absoluteX="61dp" />
 
     <TextView
+        android:textColor="@color/white"
         android:id="@+id/bio"
         android:layout_width="match_parent"
         android:layout_height="150dp"
         android:layout_below="@id/artist_3"
+        android:layout_marginLeft="15dp"
         android:layout_marginTop="16dp"
         android:layout_marginRight="15dp"
-        android:layout_marginLeft="15dp"
         android:background="@drawable/rounded_corners"
         android:paddingTop="26dp"
         android:text="Phasellus consectetur justo a sem tincidunt elementum. Etiam et nulla at odio luctus accumsan. Nunc volutpat orci a lobortis luctus. Suspendisse in tristique urna. Curabitur sollicitudin nulla fermentum, malesuada nunc in, fringilla odio. Nullam ultricies risus a velit egestas suscipit. Nulla facilisi."
@@ -114,8 +119,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="horizontal"
-        android:layout_below="@id/bio">
+        android:layout_below="@id/bio"
+        android:orientation="horizontal">
 
 
         <Button
@@ -124,6 +129,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Add friend" />
+
         <Button
             android:id="@+id/add_friend"
             android:layout_width="wrap_content"
