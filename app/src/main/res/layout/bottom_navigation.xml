@@ -19,7 +19,7 @@
         android:layout_marginBottom="0dp"
         android:clickable="true"
 
-        app:srcCompat="@drawable/homeicon" />
+        app:srcCompat="@drawable/selectedhomeicon" />
 
     <ImageView
         android:id="@+id/iv_friends"

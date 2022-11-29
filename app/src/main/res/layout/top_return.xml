@@ -19,7 +19,7 @@
         app:srcCompat="@drawable/backarrow" />
 
     <ImageView
-        android:id="@+id/iv_chatList"
+        android:id="@+id/iv_profile"
         android:layout_width="50dp"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"

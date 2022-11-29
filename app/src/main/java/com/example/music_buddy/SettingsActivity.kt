@@ -81,7 +81,7 @@ class SettingsActivity : AppCompatActivity() {
 
         user.put("username",username)
         user.put("profileDescription",description)
-        user.put("profilepic",ParseFile(profilePicture))
+        user.put("profilePic",ParseFile(profilePicture))
         user.put("userAge",age)
         user.put("location",location)
         user.saveInBackground{ if (it != null){
