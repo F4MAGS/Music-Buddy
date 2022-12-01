@@ -1,11 +1,8 @@
-package com.example.music_buddy
+package com.example.music_buddy.ui.fragments
 
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
+import androidx.fragment.app.Fragment
+import com.example.music_buddy.R
 
-class chatFragment : AppCompatActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.fragment_chat)
-    }
+class chatFragment: Fragment(R.layout.fragment_chat) {
+
 }
