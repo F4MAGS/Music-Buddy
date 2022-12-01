@@ -411,6 +411,18 @@ GIF created with [LiceCap](http://www.cockos.com/licecap/).
 #### GIF(s)
 
 <img src='sprint1.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+	
+### Sprint-2
+
+### Stories
+- [x] [Created fragment manager in main activity](https://github.com/F4MAGS/Music-Buddy/issues/62)
+- [x] [(Backend) Update data from Setting to Parse](https://github.com/F4MAGS/Music-Buddy/issues/49)
+- [x] [Created friend list fragment in chat list](https://github.com/F4MAGS/Music-Buddy/issues/24)
+- [x] [Created friends screen horizontal friends display fragment](https://github.com/F4MAGS/Music-Buddy/issues/21)
+- [x] [Created fragment manager in main activity](https://github.com/F4MAGS/Music-Buddy/issues/1)
+#### GIF(s)
+
+<img src='sprint2.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
 Settings page gif
 <img src='SettingsActivityDemo/settings.gif' title='Settings' width='' alt='Settings walkthrough' />
