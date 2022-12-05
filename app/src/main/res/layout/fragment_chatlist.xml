@@ -7,7 +7,7 @@
     tools:context=".ui.fragments.chatlistFragment">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_friendsListContainer"
+        android:id="@+id/friendsRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
