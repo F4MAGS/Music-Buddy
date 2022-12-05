@@ -22,6 +22,14 @@ import com.parse.Parse;
 import com.parse.ParseException;
 import com.parse.ParseUser;
 import java.util.*
+import android.widget.Toast
+
+import com.parse.FindCallback
+
+import com.parse.ParseQuery
+
+
+
 
 
 class LoginActivity : AppCompatActivity() {
@@ -63,9 +71,41 @@ class LoginActivity : AppCompatActivity() {
                     val jsonObject = JSONObject(response.body!!.string())
                     email = jsonObject.getString("email")
                     Log.i(TAG,jsonObject.toString())
+<<<<<<< Updated upstream
                     Log.i(TAG,email)
                     loginUser(email,"password")
                     registerUser(email,"password")
+=======
+                    var query: ParseQuery<ParseUser> = ParseUser.getQuery()
+                    query = query.whereEqualTo("username", email);
+                    try {
+                        val queryCount = query.count()
+                        Log.d(Companion.TAG, "Count: $queryCount")
+                        if (queryCount == 0){
+                            registerUser(email,"password")
+                        }
+                        else{
+                            loginUser(email,"password")
+                        }
+
+                    } catch (parseException: ParseException) {
+                        parseException.printStackTrace()
+                    }
+//                    query.findInBackground(object : FindCallback<ParseUser?> {
+//                        override fun done(
+//                            objects: kotlin.collections.MutableList<ParseUser?>?,
+//                            e: com.parse.ParseException?
+//                        ) {
+//                            if (e == null) {
+//                                Log.i(TAG,objects!!.get(0)!!.username)
+//                            } else {
+//                                // Something went wrong.
+//                            }
+//                        }
+//                    })
+
+
+>>>>>>> Stashed changes
                 } catch (e: JSONException) {
                     Log.e(TAG,"Failed to parse data: $e")
                 }
