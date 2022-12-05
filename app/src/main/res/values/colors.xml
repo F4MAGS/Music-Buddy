@@ -12,4 +12,7 @@
     <color name="endColor">#9A6AFF</color>
     <color name="bottomBarColor">#A89CD5FF</color>
     <color name="topBarColor">#70000000</color>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
 </resources>

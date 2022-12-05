@@ -65,5 +65,11 @@
 
     </string-array>
     <!-- TODO: Remove or change this placeholder text -->
+<!--    http://musicbuddy388.com/callback/-->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="com_spotify_sdk_redirect_scheme">http</string>
+    <string name="com_spotify_sdk_redirect_host">musicbuddy388.com/callback</string>
+    <string name="code">Code: %1$s</string>
+    <string name="token">Access Token: %1$s</string>
+    <string name="warning_need_token">You need to request an access token first</string>
 </resources>
