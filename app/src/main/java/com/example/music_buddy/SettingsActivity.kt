@@ -11,10 +11,9 @@ import android.util.Log
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.FileProvider
-import com.parse.ParseFile
-import com.parse.ParseObject
+import com.parse.*
 import java.io.File
-import com.parse.ParseUser
+
 
 class SettingsActivity : AppCompatActivity() {
     val CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 1034
@@ -25,7 +24,7 @@ class SettingsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.settings)
-        val userParseObject = ParseObject("userData")
+//        val userParseObject = ParseObject("userData")
         val ages = IntArray(67) { 13 + (it + 1) }.toCollection(ArrayList())
         val state_spinner: Spinner = findViewById(R.id.states)
         val age_spinner: Spinner = findViewById(R.id.age)
@@ -63,7 +62,7 @@ class SettingsActivity : AppCompatActivity() {
                     Toast.makeText(this, "Please provide description", Toast.LENGTH_SHORT).show()
                 }
                 else {
-                    submitPost(userParseObject, username,
+                    submitPost(username,
                         age as Number, location, description, photoFile!!)
                     Toast.makeText(this, "Successfully posted!", Toast.LENGTH_SHORT).show()
                     val intent = Intent(this, HomeActivity::class.java)
@@ -77,19 +76,24 @@ class SettingsActivity : AppCompatActivity() {
         }
     }
 
-    fun submitPost( user:ParseObject, username:String, age:Number, location:String,description:String, profilePicture:File){
+    fun submitPost( username:String, age:Number, location:String,description:String, profilePicture:File){
 
-        user.put("username",username)
-        user.put("profileDescription",description)
-        user.put("profilePic",ParseFile(profilePicture))
-        user.put("userAge",age)
-        user.put("location",location)
-        user.saveInBackground{ if (it != null){
-            it.localizedMessage?.let { message -> Log.e(TAG, message) }
-        }else{
-            Log.d(TAG,"Object saved.")
+        var query = ParseQuery<ParseObject>("userData")
+        query = query.whereEqualTo("email", ParseUser.getCurrentUser().username)
+        query.findInBackground { objects: List<ParseObject>, e: ParseException? ->
+            if (e == null) {
+//                Log.i(TAG,objects.get(0).toString())
+                objects.get(0).put("username",username)
+                objects.get(0).put("profileDescription",description)
+                objects.get(0).put("profilePic",ParseFile(profilePicture))
+                objects.get(0).put("userAge",age)
+                objects.get(0).put("location",location)
+                objects.get(0).saveInBackground()
+            } else {
+                Log.e(TAG, "Parse Error: ", e)
+            }
         }
-        }
+
     }
 
     fun onLaunchCamera() {

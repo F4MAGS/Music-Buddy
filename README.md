@@ -424,8 +424,10 @@ GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
 <img src='sprint2.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
-Settings page gif
+Settings page gif and screenshot
 <img src='SettingsActivityDemo/settings.gif' title='Settings' width='' alt='Settings walkthrough' />
 <img src='SettingsActivityDemo/parseDBafterdemo.png' title='Settings' width='' alt='Parse db after setting' />
-
+Refactor setting page gif and screenshot
+<img src='SettingsActivityDemo/refactorSettings.gif' title='Refactor settings' width='' alt='Refactor settings walkthrough' />
+<img src='SettingsActivityDemo/RefactorSettings.png' title='Settings' width='' alt='Parse db after refactor setting' />
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
