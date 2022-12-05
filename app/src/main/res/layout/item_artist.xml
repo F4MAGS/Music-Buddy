@@ -7,18 +7,26 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     >
 
-    <!-- Circular Image View  -->
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/iv_chatlistPicture"
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/pictureBorder"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="20dp"
-        android:clickable="true"
-        app:civ_border_color="@color/startColor"
-        app:civ_border_width="2dp"
-        tools:src="@tools:sample/avatars" />
+        app:cardCornerRadius="250dp"
+        android:layout_gravity="center"
+        >
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:id="@+id/iv_artistPicture"
+            tools:src="@tools:sample/avatars"
+            android:clickable="true"
+            />
+    </androidx.cardview.widget.CardView>
 
 
     <TextView
@@ -30,7 +38,7 @@
         android:layout_marginTop="45dp"
         android:layout_marginEnd="10dp"
         android:layout_toStartOf="@+id/iv_playartist"
-        android:layout_toEndOf="@+id/iv_chatlistPicture"
+        android:layout_toEndOf="@+id/pictureBorder"
         android:background="@drawable/rounded_corners"
         android:paddingLeft="10dp"
         android:paddingTop="3dp"
