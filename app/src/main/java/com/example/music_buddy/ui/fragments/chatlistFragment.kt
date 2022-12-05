@@ -48,7 +48,7 @@ class chatlistFragment: Fragment(R.layout.fragment_chatlist) {
     open fun queryFriends() {
         // Specify which class to query
         val query: ParseQuery<Data> = ParseQuery.getQuery(Data::class.java)
-        query.whereEqualTo(Data.KEY_USERNAME, "person")
+//        query.whereEqualTo(Data.KEY_USERNAME, "person")
 //        query.addDescendingOrder("createdAt")
 //        query.include(Data.KEY_USER)
 
@@ -75,72 +75,12 @@ class chatlistFragment: Fragment(R.layout.fragment_chatlist) {
                                         TAG,
                                         "friendID: " + friendID
                                     )
-                                    queryParseUser(friendID)
+//                                    queryParseUser(friendID)
                                 }
                         }
+
 //                        allPosts.clear()
-//                        allFriends.addAll(dataUsers)
-                        adapter.notifyDataSetChanged()
-                    }
-                }
-            }
-        })
-    }
-
-    fun queryParseUser(userID: String) {
-        val query: ParseQuery<User> = ParseQuery.getQuery(User::class.java)
-        query.whereEqualTo(User.KEY_OBJECTID, userID)
-
-        query.findInBackground(object : FindCallback<User> {
-            override fun done(dataUsers: MutableList<User>?, e: ParseException?) {
-                if (e != null) {
-                    Log.e(TAG, "Error fetching parseUser data")
-                } else {
-                    Log.i(TAG, "Success fetching parseUser data")
-                    Log.i(
-                        TAG,
-//                                        + " , singleArray: " + dataUser
-                        " , Fullarray: " + dataUsers
-                    )
-                    if (dataUsers != null) {
-                        for (dataUser in dataUsers) {
-                            Log.i(
-                                TAG,
-                                "Friend objectID: " + dataUser.getUsername()
-                            )
-                            queryFriendData(dataUser)
-                        }
-                    }
-                }
-            }
-        })
-    }
-
-    fun queryFriendData(friendID: User) {
-        // Specify which class to query
-        val query: ParseQuery<Data> = ParseQuery.getQuery(Data::class.java)
-        query.whereEqualTo(Data.KEY_USER, friendID)
-//        query.addDescendingOrder("createdAt")
-//        query.include(Data.KEY_USER)
-
-        query.findInBackground(object : FindCallback<Data> {
-            override fun done(dataUsers: MutableList<Data>?, e: ParseException?) {
-                if (e != null) {
-                    Log.e(TAG, "Error fetching friend data")
-                } else {
-                    Log.i(TAG, "Success fetching friend data")
-                    Log.i(
-                        TAG,
-//                                        + " , singleArray: " + dataUser
-                                        " , Fullarray: " + dataUsers
-                    )
-                    if (dataUsers != null) {
-                        for (dataUser in dataUsers) {
-                            Log.i(
-                                TAG,
-                                "Friend objectID: " + dataUser.getUser()?.objectId
-                            )
-                        }
+                        //comment out later
                         allFriends.addAll(dataUsers)
                         adapter.notifyDataSetChanged()
                     }
@@ -148,6 +88,68 @@ class chatlistFragment: Fragment(R.layout.fragment_chatlist) {
             }
         })
     }
+
+//    fun queryParseUser(userID: String) {
+//        val query: ParseQuery<User> = ParseQuery.getQuery(User::class.java)
+//        query.whereEqualTo(User.KEY_OBJECTID, userID)
+//
+//        query.findInBackground(object : FindCallback<User> {
+//            override fun done(dataUsers: MutableList<User>?, e: ParseException?) {
+//                if (e != null) {
+//                    Log.e(TAG, "Error fetching parseUser data")
+//                } else {
+//                    Log.i(TAG, "Success fetching parseUser data")
+//                    Log.i(
+//                        TAG,
+////                                        + " , singleArray: " + dataUser
+//                        " , Fullarray: " + dataUsers
+//                    )
+//                    if (dataUsers != null) {
+//                        for (dataUser in dataUsers) {
+//                            Log.i(
+//                                TAG,
+//                                "Friend objectID: " + dataUser.getUsername()
+//                            )
+//                            queryFriendData(dataUser)
+//                        }
+//                    }
+//                }
+//            }
+//        })
+//    }
+//
+//    fun queryFriendData(friendID: User) {
+//        // Specify which class to query
+//        val query: ParseQuery<Data> = ParseQuery.getQuery(Data::class.java)
+//        query.whereEqualTo(Data.KEY_USER, friendID)
+////        query.addDescendingOrder("createdAt")
+////        query.include(Data.KEY_USER)
+//
+//        query.findInBackground(object : FindCallback<Data> {
+//            override fun done(dataUsers: MutableList<Data>?, e: ParseException?) {
+//                if (e != null) {
+//                    Log.e(TAG, "Error fetching friend data")
+//                } else {
+//                    Log.i(TAG, "Success fetching friend data")
+//                    Log.i(
+//                        TAG,
+////                                        + " , singleArray: " + dataUser
+//                                        " , Fullarray: " + dataUsers
+//                    )
+//                    if (dataUsers != null) {
+//                        for (dataUser in dataUsers) {
+//                            Log.i(
+//                                TAG,
+//                                "Friend objectID: " + dataUser.getUser()?.objectId
+//                            )
+//                        }
+//                        allFriends.addAll(dataUsers)
+//                        adapter.notifyDataSetChanged()
+//                    }
+//                }
+//            }
+//        })
+//    }
 
 
     companion object {
