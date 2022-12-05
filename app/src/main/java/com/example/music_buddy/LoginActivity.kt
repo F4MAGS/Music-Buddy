@@ -71,11 +71,6 @@ class LoginActivity : AppCompatActivity() {
                     val jsonObject = JSONObject(response.body!!.string())
                     email = jsonObject.getString("email")
                     Log.i(TAG,jsonObject.toString())
-<<<<<<< Updated upstream
-                    Log.i(TAG,email)
-                    loginUser(email,"password")
-                    registerUser(email,"password")
-=======
                     var query: ParseQuery<ParseUser> = ParseUser.getQuery()
                     query = query.whereEqualTo("username", email);
                     try {
@@ -105,7 +100,6 @@ class LoginActivity : AppCompatActivity() {
 //                    })
 
 
->>>>>>> Stashed changes
                 } catch (e: JSONException) {
                     Log.e(TAG,"Failed to parse data: $e")
                 }
