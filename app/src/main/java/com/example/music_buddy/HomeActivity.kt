@@ -2,6 +2,7 @@ package com.example.music_buddy
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import androidx.fragment.app.Fragment
@@ -10,7 +11,10 @@ import com.example.music_buddy.ui.fragments.homeFragment
 import com.example.music_buddy.ui.fragments.profileFragment
 import com.example.music_buddy.ui.fragments.chatlistFragment
 import com.example.music_buddy.ui.fragments.friendsFragment
-
+import com.parse.FindCallback
+import com.parse.ParseException
+import com.parse.ParseQuery
+import com.parse.*
 
 class HomeActivity : AppCompatActivity() {
     lateinit var binding: ActivityHomeBinding
@@ -24,7 +28,6 @@ class HomeActivity : AppCompatActivity() {
         // Used for UI Changes in navigation bars
         // Profile, Home, Chat, Friends
         var prevStatus = "Home"
-
         //Profile Press
         binding.rlTopBar.ivProfile.setOnClickListener{
             replaceFragment(profileFragment())

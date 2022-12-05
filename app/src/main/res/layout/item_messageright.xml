@@ -11,57 +11,55 @@
         android:id="@+id/pictureBorder"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
         android:layout_marginBottom="20dp"
         app:cardCornerRadius="250dp"
         android:layout_gravity="center"
+        android:layout_alignParentRight="true"
         >
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="centerCrop"
-            android:id="@+id/ivChatlistPicture"
+            android:id="@+id/iv_messagePicture"
             tools:src="@tools:sample/avatars"
             android:clickable="true"
             />
     </androidx.cardview.widget.CardView>
 
-
     <TextView
-        android:id="@+id/tvChatlistName"
+        android:id="@+id/messageName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
         android:layout_marginStart="25dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="10dp"
-        android:layout_toEndOf="@+id/pictureBorder"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="15dp"
+        android:layout_toStartOf="@+id/pictureBorder"
+        android:gravity="right"
+        android:singleLine="true"
         android:text="TestName"
         android:textColor="@color/black"
-        android:textSize="20dp"
-
-        />
+        android:textSize="20dp" />
 
     <TextView
-        android:id="@+id/tvChatlistMessage"
+        android:id="@+id/messageMessage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/tvChatlistName"
-        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/messageName"
         android:layout_marginStart="10dp"
         android:layout_marginTop="3dp"
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="10dp"
-        android:layout_toEndOf="@+id/pictureBorder"
-        android:background="@drawable/rounded_corners"
+        android:layout_toStartOf="@+id/pictureBorder"
+        android:background="@drawable/rounded_message"
         android:paddingLeft="10dp"
-        android:paddingRight="10dp"
         android:paddingTop="3dp"
+        android:paddingRight="10dp"
         android:paddingBottom="3dp"
-        android:singleLine="true"
         android:text="Text Message Text Message Text Message Text Message Text Message Text Message Text Message Text Message Text Message Text Message Text Message Text Message"
         android:textColor="@color/white"
-        android:textSize="15dp" />
+        android:textSize="15dp"
+        tools:ignore="NotSibling" />
 </RelativeLayout>
