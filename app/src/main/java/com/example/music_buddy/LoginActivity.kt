@@ -63,6 +63,9 @@ class LoginActivity : AppCompatActivity() {
                     val jsonObject = JSONObject(response.body!!.string())
                     email = jsonObject.getString("email")
                     Log.i(TAG,jsonObject.toString())
+                    Log.i(TAG,email)
+                    loginUser(email,"password")
+                    registerUser(email,"password")
                 } catch (e: JSONException) {
                     Log.e(TAG,"Failed to parse data: $e")
                 }
@@ -129,12 +132,11 @@ class LoginActivity : AppCompatActivity() {
         if (requestCode == AUTH_TOKEN_REQUEST_CODE) {
             mAccessToken = response.accessToken
             if (mAccessToken != null) {
+                ParseUser.logOut()
                 val intent = Intent(this, HomeActivity::class.java)
                 onGetUserProfileClicked()
                 startActivity(intent)
-                ParseUser.logOut()
-                loginUser(email,"password")
-                registerUser(email,"password")
+
             }
         }
     }
