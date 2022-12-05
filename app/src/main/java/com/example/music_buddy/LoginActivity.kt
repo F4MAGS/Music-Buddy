@@ -17,6 +17,10 @@ import okhttp3.Request
 import org.json.JSONException
 import org.json.JSONObject
 import java.io.IOException
+import com.parse.ParseObject
+import com.parse.Parse;
+import com.parse.ParseException;
+import com.parse.ParseUser;
 import java.util.*
 
 
@@ -24,6 +28,7 @@ class LoginActivity : AppCompatActivity() {
     val CLIENT_ID = "73eb7f1868ed45ce9434228fa009f30e"
     val AUTH_TOKEN_REQUEST_CODE = 0x10
     val REDIRECT_URI = "http://musicbuddy388.com/callback/"
+    var email = ""
 
     private val mOkHttpClient: OkHttpClient = OkHttpClient()
     var mAccessToken: String? = null
@@ -56,6 +61,7 @@ class LoginActivity : AppCompatActivity() {
             override fun onResponse(call: Call, response: okhttp3.Response) {
                 try {
                     val jsonObject = JSONObject(response.body!!.string())
+                    email = jsonObject.getString("email")
                     Log.i(TAG,jsonObject.toString())
                 } catch (e: JSONException) {
                     Log.e(TAG,"Failed to parse data: $e")
@@ -64,6 +70,41 @@ class LoginActivity : AppCompatActivity() {
         })
     }
 
+
+    fun registerUser(username:String, password:String){
+        val user = ParseUser()
+        val userParseObject = ParseObject("userData")
+        user.setUsername(username)
+        user.setPassword(password)
+        user.signUpInBackground { e ->
+            if (e == null) {
+                Log.i(TAG,"Registration ParseUser successful")
+                userParseObject.put("username",username)
+                userParseObject.put("email",username)
+                userParseObject.put("userID",ParseUser.createWithoutData("_User", user.objectId))
+                userParseObject.saveInBackground{ if (it != null){
+                    it.localizedMessage?.let { message -> Log.e(TAG, message) }
+                }else{
+                    Log.d(TAG,"Object saved.")
+                }
+                }
+
+            } else {
+                Log.e(TAG,e.toString())
+            }
+        }
+
+        user.put("username",username)
+    }
+    fun loginUser(username:String, password:String){
+        ParseUser.logInInBackground(username, password, ({ user, e ->
+            if (user != null) {
+                Log.i(TAG,"Login ParseUser successful")
+            } else {
+                Log.e(TAG,e.toString())
+            }})
+        )
+    }
 
     fun onRequestTokenClicked(view: View?) {
         val request: AuthorizationRequest =
@@ -88,9 +129,12 @@ class LoginActivity : AppCompatActivity() {
         if (requestCode == AUTH_TOKEN_REQUEST_CODE) {
             mAccessToken = response.accessToken
             if (mAccessToken != null) {
-                val intent = Intent(this, SettingsActivity::class.java)
+                val intent = Intent(this, HomeActivity::class.java)
                 onGetUserProfileClicked()
                 startActivity(intent)
+                ParseUser.logOut()
+                loginUser(email,"password")
+                registerUser(email,"password")
             }
         }
     }
