@@ -18,6 +18,10 @@ class Data : ParseObject() {
         return getString(KEY_USERNAME)
     }
 
+    fun getEmail(): String? {
+        return getString(KEY_EMAIL)
+    }
+
     fun getUser(): ParseUser? {
         return getParseUser(KEY_USER)
     }
@@ -36,6 +40,7 @@ class Data : ParseObject() {
 
     companion object {
         const val KEY_USERNAME = "username"
+        const val KEY_EMAIL = "email"
         const val KEY_FRIENDS = "friends"
         const val KEY_USER = "userID"
         const val KEY_PICTURE = "profilePic"
