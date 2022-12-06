@@ -394,7 +394,8 @@ GIF created with [LiceCap](http://www.cockos.com/licecap/).
     `GET`    | me/following | Get Followed Artists
     `GET`    | me/following/contains | Check If User Follows Artists or Users
 	
-	## Milestones
+
+## Milestones
 
 ### Sprint-1
 
@@ -412,6 +413,7 @@ GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
 <img src='sprint1.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 	
+----	
 ### Sprint-2
 
 ### Stories
@@ -424,10 +426,31 @@ GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
 <img src='sprint2.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
-Settings page gif and screenshot
+----	
+### Sprint-3
+
+### Stories
+- [x] [Create Chat xml Fragment](https://github.com/F4MAGS/Music-Buddy/issues/19)
+- [x] [(Backend) Query List of users friends](https://github.com/F4MAGS/Music-Buddy/issues/35)
+- [x] [Implement Chat List](https://github.com/F4MAGS/Music-Buddy/issues/72)
+- [x] [Implement Parse Classes for User, userData and userChat](https://github.com/F4MAGS/Music-Buddy/issues/73)
+#### GIF(s)
+
+##### [Chat List Implementation Gif](https://github.com/F4MAGS/Music-Buddy/pull/74)
+<img src='goceSprint3.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />	
+
+##### Settings page gif and screenshot
 <img src='SettingsActivityDemo/settings.gif' title='Settings' width='' alt='Settings walkthrough' />
 <img src='SettingsActivityDemo/parseDBafterdemo.png' title='Settings' width='' alt='Parse db after setting' />
-Refactor setting page gif and screenshot
+	
+##### Refactor setting page gif and screenshot
 <img src='SettingsActivityDemo/refactorSettings.gif' title='Refactor settings' width='' alt='Refactor settings walkthrough' />
 <img src='SettingsActivityDemo/RefactorSettings.png' title='Settings' width='' alt='Parse db after refactor setting' />
-GIF created with [LiceCap](http://www.cockos.com/licecap/).
+	
+##### Settings page gif and screenshot
+<img src='SettingsActivityDemo/settings.gif' title='Settings' width='' alt='Settings walkthrough' />
+<img src='SettingsActivityDemo/parseDBafterdemo.png' title='Settings' width='' alt='Parse db after setting' />
+
+	
+----		
+All GIFs are created with [LiceCap](http://www.cockos.com/licecap/).
