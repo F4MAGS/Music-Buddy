@@ -22,6 +22,14 @@ import com.parse.Parse;
 import com.parse.ParseException;
 import com.parse.ParseUser;
 import java.util.*
+import android.widget.Toast
+
+import com.parse.FindCallback
+
+import com.parse.ParseQuery
+
+
+
 
 
 class LoginActivity : AppCompatActivity() {
@@ -63,6 +71,35 @@ class LoginActivity : AppCompatActivity() {
                     val jsonObject = JSONObject(response.body!!.string())
                     email = jsonObject.getString("email")
                     Log.i(TAG,jsonObject.toString())
+                    var query: ParseQuery<ParseUser> = ParseUser.getQuery()
+                    query = query.whereEqualTo("username", email);
+                    try {
+                        val queryCount = query.count()
+                        Log.d(Companion.TAG, "Count: $queryCount")
+                        if (queryCount == 0){
+                            registerUser(email,"password")
+                        }
+                        else{
+                            loginUser(email,"password")
+                        }
+
+                    } catch (parseException: ParseException) {
+                        parseException.printStackTrace()
+                    }
+//                    query.findInBackground(object : FindCallback<ParseUser?> {
+//                        override fun done(
+//                            objects: kotlin.collections.MutableList<ParseUser?>?,
+//                            e: com.parse.ParseException?
+//                        ) {
+//                            if (e == null) {
+//                                Log.i(TAG,objects!!.get(0)!!.username)
+//                            } else {
+//                                // Something went wrong.
+//                            }
+//                        }
+//                    })
+
+
                 } catch (e: JSONException) {
                     Log.e(TAG,"Failed to parse data: $e")
                 }
@@ -129,12 +166,11 @@ class LoginActivity : AppCompatActivity() {
         if (requestCode == AUTH_TOKEN_REQUEST_CODE) {
             mAccessToken = response.accessToken
             if (mAccessToken != null) {
+                ParseUser.logOut()
                 val intent = Intent(this, HomeActivity::class.java)
                 onGetUserProfileClicked()
                 startActivity(intent)
-                ParseUser.logOut()
-                loginUser(email,"password")
-                registerUser(email,"password")
+
             }
         }
     }
