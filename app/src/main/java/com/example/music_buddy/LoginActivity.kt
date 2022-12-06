@@ -110,28 +110,29 @@ class LoginActivity : AppCompatActivity() {
 
     fun registerUser(username:String, password:String){
         val user = ParseUser()
-        val userParseObject = ParseObject("userData")
         user.setUsername(username)
         user.setPassword(password)
         user.signUpInBackground { e ->
             if (e == null) {
                 Log.i(TAG,"Registration ParseUser successful")
+                val userParseObject: ParseObject = ParseObject.create("userData")
                 userParseObject.put("username",username)
                 userParseObject.put("email",username)
                 userParseObject.put("userID",ParseUser.createWithoutData("_User", user.objectId))
-                userParseObject.saveInBackground{ if (it != null){
-                    it.localizedMessage?.let { message -> Log.e(TAG, message) }
-                }else{
-                    Log.d(TAG,"Object saved.")
+                userParseObject.saveInBackground{
+                    if (it != null) {
+                        it.localizedMessage?.let { message -> Log.e(TAG, message) }
+                    }
+                    else{
+                        Log.d(TAG,"ParseObject saved in userData.")
+                    }
                 }
-                }
-
             } else {
                 Log.e(TAG,e.toString())
             }
         }
 
-        user.put("username",username)
+        
     }
     fun loginUser(username:String, password:String){
         ParseUser.logInInBackground(username, password, ({ user, e ->
