@@ -12,6 +12,7 @@ import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.FileProvider
 import com.parse.*
+import org.json.JSONObject
 import java.io.File
 
 
@@ -75,6 +76,22 @@ class SettingsActivity : AppCompatActivity() {
             onLaunchCamera()
         }
     }
+
+
+    private fun getTopXArtist(topArtistsObject: JSONObject, index: Int): JSONObject?{
+        val artists = topArtistsObject.getJSONArray("items")
+        return artists.getJSONObject(index)
+    }
+
+    private fun getArtistUsername(artist: JSONObject):String?{
+        return artist.getString("name")
+    }
+
+    private fun getArtistPicture(artist: JSONObject):String?{
+        val images =  artist.getJSONArray("images")
+        return images.getJSONObject(2).getString("url")
+    }
+
 
     fun submitPost( username:String, age:Number, location:String,description:String, profilePicture:File){
 

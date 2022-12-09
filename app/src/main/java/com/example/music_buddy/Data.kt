@@ -4,6 +4,7 @@ import com.parse.ParseFile
 import com.parse.ParseObject
 import com.parse.ParseUser
 import org.json.JSONArray
+import org.json.JSONObject
 import java.time.format.DateTimeFormatter
 import java.util.*
 
@@ -12,6 +13,10 @@ class Data : ParseObject() {
 
     fun getFriendsArray(): JSONArray? {
         return getJSONArray(KEY_FRIENDS)
+    }
+
+    fun getTopArtistsObject(): JSONObject? {
+        return getJSONObject(KEY_ARTISTS)
     }
 
     fun getUsername(): String? {
@@ -44,5 +49,6 @@ class Data : ParseObject() {
         const val KEY_FRIENDS = "friends"
         const val KEY_USER = "userID"
         const val KEY_PICTURE = "profilePic"
+        const val KEY_ARTISTS = "topArtists"
     }
 }

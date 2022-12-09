@@ -24,9 +24,12 @@ import com.parse.ParseUser;
 import java.util.*
 import android.widget.Toast
 
+
 import com.parse.FindCallback
 
 import com.parse.ParseQuery
+
+
 
 class LoginActivity : AppCompatActivity() {
     val CLIENT_ID = "73eb7f1868ed45ce9434228fa009f30e"
@@ -67,7 +70,6 @@ class LoginActivity : AppCompatActivity() {
                 try {
                     val jsonObject = JSONObject(response.body!!.string())
                     email = jsonObject.getString("email")
-                    Log.i(TAG,jsonObject.toString())
                     var query: ParseQuery<ParseUser> = ParseUser.getQuery()
                     query = query.whereEqualTo("username", email);
                     try {
@@ -75,12 +77,10 @@ class LoginActivity : AppCompatActivity() {
                         Log.d(Companion.TAG, "Count: $queryCount")
                         if (queryCount == 0){
                             val topArtistsObj  = getTopArtists()
-                            Log.i(TAG,topArtistsObj.toString())
                             registerUser(email,"password",topArtistsObj)
                         }
                         else{
                             val topArtistsObj = getTopArtists()
-                            Log.i(TAG,topArtistsObj.toString())
                             loginUser(email,"password",topArtistsObj)
 
                         }
@@ -108,7 +108,6 @@ class LoginActivity : AppCompatActivity() {
 
                 try {
                     jsonObject2 = JSONObject(response2.body!!.string())
-                    Log.i(TAG,jsonObject2.toString())
                 } catch (e: JSONException) {
                     Log.i(TAG,e.toString())
                 }
@@ -118,7 +117,7 @@ class LoginActivity : AppCompatActivity() {
     }
 
 
-    fun registerUser(username:String, password:String,topArtistsObj:JSONObject){
+    fun registerUser(username:String, password:String,topArtistsObj:JSONObject) {
         val user = ParseUser()
         user.setUsername(username)
         user.setPassword(password)
@@ -138,6 +137,7 @@ class LoginActivity : AppCompatActivity() {
                         Log.d(TAG,"ParseObject saved in userData.")
                     }
                 }
+
             } else {
                 Log.e(TAG,e.toString())
             }
@@ -154,7 +154,6 @@ class LoginActivity : AppCompatActivity() {
                 query.findInBackground { objects: List<ParseObject>, e: ParseException? ->
                     if (e == null) {
                         Log.i(TAG,"Login user adding topArtists")
-                        Log.i(TAG,topArtistsObj.toString())
                         objects.get(0).put("topArtists",topArtistsObj)
                         objects.get(0).saveInBackground()
                     } else {
@@ -163,8 +162,11 @@ class LoginActivity : AppCompatActivity() {
                 }
 
             } else {
+
                 Log.e(TAG,e.toString())
-            }})
+            }
+
+        })
         )
     }
 
@@ -192,11 +194,17 @@ class LoginActivity : AppCompatActivity() {
             mAccessToken = response.accessToken
             if (mAccessToken != null) {
                 ParseUser.logOut()
-                val intent = Intent(this, HomeActivity::class.java)
+
                 onGetUserProfileClicked()
-                startActivity(intent)
+                val intent = Intent(this, HomeActivity::class.java)
+
+                //wait 6 seconds before going to home to give time to the api respose
+                Timer("SettingUp", false).schedule(6000) {
+                    startActivity(intent)
+                }
 
             }
+
         }
     }
 
