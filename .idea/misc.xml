@@ -31,7 +31,7 @@
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.14270833333333333" />
         <entry key="app/src/main/res/layout/activity_profile.xml" value="0.18568840579710144" />
         <entry key="app/src/main/res/layout/bottom_navigation.xml" value="0.18568840579710144" />
-        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.14270833333333333" />
+        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.21" />
         <entry key="app/src/main/res/layout/fragment_main.xml" value="0.2385574340820312" />
         <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.18568840579710144" />
         <entry key="app/src/main/res/layout/settings.xml" value="0.20993957519531248" />

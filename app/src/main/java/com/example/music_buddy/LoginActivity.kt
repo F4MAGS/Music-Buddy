@@ -28,10 +28,6 @@ import com.parse.FindCallback
 
 import com.parse.ParseQuery
 
-
-
-
-
 class LoginActivity : AppCompatActivity() {
     val CLIENT_ID = "73eb7f1868ed45ce9434228fa009f30e"
     val AUTH_TOKEN_REQUEST_CODE = 0x10
@@ -41,6 +37,7 @@ class LoginActivity : AppCompatActivity() {
     private val mOkHttpClient: OkHttpClient = OkHttpClient()
     var mAccessToken: String? = null
     private var mCall: Call? = null
+    private var mCall2: Call? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -77,29 +74,20 @@ class LoginActivity : AppCompatActivity() {
                         val queryCount = query.count()
                         Log.d(Companion.TAG, "Count: $queryCount")
                         if (queryCount == 0){
-                            registerUser(email,"password")
+                            val topArtistsObj  = getTopArtists()
+                            Log.i(TAG,topArtistsObj.toString())
+                            registerUser(email,"password",topArtistsObj)
                         }
                         else{
-                            loginUser(email,"password")
+                            val topArtistsObj = getTopArtists()
+                            Log.i(TAG,topArtistsObj.toString())
+                            loginUser(email,"password",topArtistsObj)
+
                         }
 
                     } catch (parseException: ParseException) {
                         parseException.printStackTrace()
                     }
-//                    query.findInBackground(object : FindCallback<ParseUser?> {
-//                        override fun done(
-//                            objects: kotlin.collections.MutableList<ParseUser?>?,
-//                            e: com.parse.ParseException?
-//                        ) {
-//                            if (e == null) {
-//                                Log.i(TAG,objects!!.get(0)!!.username)
-//                            } else {
-//                                // Something went wrong.
-//                            }
-//                        }
-//                    })
-
-
                 } catch (e: JSONException) {
                     Log.e(TAG,"Failed to parse data: $e")
                 }
@@ -107,8 +95,45 @@ class LoginActivity : AppCompatActivity() {
         })
     }
 
+    fun getTopArtists():JSONObject{
 
-    fun registerUser(username:String, password:String){
+            var jsonObject2 : JSONObject = JSONObject().put("something"," hi")
+            val request2: Request = Request.Builder()
+                .url("https://api.spotify.com/v1/me/top/artists?limit=3")
+                .addHeader("Authorization", "Bearer $mAccessToken")
+                .build()
+            cancelCall()
+                mOkHttpClient.newCall(request2).execute().use { response2 ->
+                if (!response2.isSuccessful) throw IOException("Unexpected code $response2")
+
+                try {
+                    jsonObject2 = JSONObject(response2.body!!.string())
+                    Log.i(TAG,jsonObject2.toString())
+                } catch (e: JSONException) {
+                    Log.i(TAG,e.toString())
+                }
+//                println(response2.body!!.string())
+            }
+            return jsonObject2
+
+
+
+
+//        mCall2!!.enqueue(object : okhttp3.Callback {
+//            override  fun onFailure(call: Call, e: IOException) {
+//                Log.e(TAG,"Failed to fetch data: $e")
+//            }
+//            @Throws(IOException::class)
+//            override fun onResponse(call: Call, response2: okhttp3.Response) {
+//
+//
+//            }
+//        })
+//        return jsonObject2
+    }
+
+
+    fun registerUser(username:String, password:String,topArtistsObj:JSONObject){
         val user = ParseUser()
         user.setUsername(username)
         user.setPassword(password)
@@ -119,6 +144,7 @@ class LoginActivity : AppCompatActivity() {
                 userParseObject.put("username",username)
                 userParseObject.put("email",username)
                 userParseObject.put("userID",ParseUser.createWithoutData("_User", user.objectId))
+                userParseObject.put("topArtists",topArtistsObj)
                 userParseObject.saveInBackground{
                     if (it != null) {
                         it.localizedMessage?.let { message -> Log.e(TAG, message) }
@@ -134,10 +160,23 @@ class LoginActivity : AppCompatActivity() {
 
         
     }
-    fun loginUser(username:String, password:String){
+    fun loginUser(username:String, password:String,topArtistsObj:JSONObject){
         ParseUser.logInInBackground(username, password, ({ user, e ->
             if (user != null) {
                 Log.i(TAG,"Login ParseUser successful")
+                var query = ParseQuery<ParseObject>("userData")
+                query = query.whereEqualTo("email", ParseUser.getCurrentUser().username)
+                query.findInBackground { objects: List<ParseObject>, e: ParseException? ->
+                    if (e == null) {
+                        Log.i(TAG,"Login user adding topArtists")
+                        Log.i(TAG,topArtistsObj.toString())
+                        objects.get(0).put("topArtists",topArtistsObj)
+                        objects.get(0).saveInBackground()
+                    } else {
+                        Log.e(TAG, "Parse Error: ", e)
+                    }
+                }
+
             } else {
                 Log.e(TAG,e.toString())
             }})
@@ -153,7 +192,7 @@ class LoginActivity : AppCompatActivity() {
     private fun getAuthenticationRequest(type: AuthorizationResponse.Type): AuthorizationRequest {
         return AuthorizationRequest.Builder(CLIENT_ID, type, REDIRECT_URI)
             .setShowDialog(false)
-            .setScopes(arrayOf("user-read-email"))
+            .setScopes(arrayOf("user-read-email","user-top-read"))
             .setCampaign("your-campaign-token")
             .build()
     }
