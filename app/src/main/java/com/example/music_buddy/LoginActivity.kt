@@ -112,24 +112,9 @@ class LoginActivity : AppCompatActivity() {
                 } catch (e: JSONException) {
                     Log.i(TAG,e.toString())
                 }
-//                println(response2.body!!.string())
             }
             return jsonObject2
 
-
-
-
-//        mCall2!!.enqueue(object : okhttp3.Callback {
-//            override  fun onFailure(call: Call, e: IOException) {
-//                Log.e(TAG,"Failed to fetch data: $e")
-//            }
-//            @Throws(IOException::class)
-//            override fun onResponse(call: Call, response2: okhttp3.Response) {
-//
-//
-//            }
-//        })
-//        return jsonObject2
     }
 
 
