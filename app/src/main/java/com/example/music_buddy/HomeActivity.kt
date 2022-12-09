@@ -13,6 +13,7 @@ import com.example.music_buddy.ui.fragments.chatlistFragment
 import com.example.music_buddy.ui.fragments.friendsFragment
 import com.parse.FindCallback
 import com.parse.ParseException
+import org.json.JSONObject
 import com.parse.ParseQuery
 import com.parse.*
 
@@ -60,7 +61,46 @@ class HomeActivity : AppCompatActivity() {
             currentFragment(prevStatus)
         }
 
+        val query: ParseQuery<Data> = ParseQuery.getQuery(Data::class.java)
+        query.whereEqualTo(Data.KEY_EMAIL, ParseUser.getCurrentUser().username)
+        query.findInBackground(object : FindCallback<Data> {
+            override fun done(dataUsers: MutableList<Data>?, e: ParseException?) {
+                if (e != null) {
+                    Log.e(TAG, "Error fetching parseUser data")
+                } else {
+                    Log.i(TAG, "Success fetching parseUser data")
+                    val Artists: JSONObject? = dataUsers?.get(0)?.getTopArtistsObject()
+                    val artist1: JSONObject? = Artists?.let { getTopXArtist(it,0) }
+                    val artist2: JSONObject? = Artists?.let { getTopXArtist(it,1) }
+                    val artist3: JSONObject? = Artists?.let { getTopXArtist(it,2) }
+                    getArtistUsername(artist1!!)?.let { Log.i(TAG, it) }
+                    getArtistPicture(artist1!!)?.let { Log.i(TAG, it) }
+                    getArtistUsername(artist2!!)?.let { Log.i(TAG, it) }
+                    getArtistPicture(artist2!!)?.let { Log.i(TAG, it) }
+                    getArtistUsername(artist3!!)?.let { Log.i(TAG, it) }
+                    getArtistPicture(artist3!!)?.let { Log.i(TAG, it) }
 
+                }
+            }
+
+        })
+
+
+    }
+
+
+    private fun getTopXArtist(topArtistsObject: JSONObject, index: Int): JSONObject?{
+        val artists = topArtistsObject.getJSONArray("items")
+        return artists.getJSONObject(index)
+    }
+
+    private fun getArtistUsername(artist: JSONObject):String?{
+        return artist.getString("name")
+    }
+
+    private fun getArtistPicture(artist: JSONObject):String?{
+        val images =  artist.getJSONArray("images")
+        return images.getJSONObject(2).getString("url")
     }
 
     private fun replaceFragment(fragment: Fragment) {
@@ -115,6 +155,10 @@ class HomeActivity : AppCompatActivity() {
         else if (current == "Profile") {
             profileIcon.visibility = View.GONE // show image view
         }
+    }
+
+    companion object{
+        const val TAG = "HomeActivity"
     }
 
 }
