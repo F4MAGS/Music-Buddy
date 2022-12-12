@@ -8,10 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.music_buddy.ChatuserAdapter
-import com.example.music_buddy.Data
-import com.example.music_buddy.R
-import com.example.music_buddy.User
+import com.example.music_buddy.*
 import com.parse.FindCallback
 import com.parse.ParseException
 import com.parse.ParseQuery
@@ -22,6 +19,8 @@ class chatlistFragment: Fragment(R.layout.fragment_chatlist) {
     lateinit var friendsRecyclerView: RecyclerView
 
     lateinit var adapter: ChatuserAdapter
+
+    var currentUser: MutableList<Data> = mutableListOf()
 
     var allFriends: MutableList<Data> = mutableListOf()
 
@@ -38,13 +37,15 @@ class chatlistFragment: Fragment(R.layout.fragment_chatlist) {
 
         friendsRecyclerView = view.findViewById(R.id.friendsRecyclerView)
 
-        adapter = ChatuserAdapter(requireContext(), allFriends)
+        adapter = ChatuserAdapter(requireContext(), currentUser, allFriends, activity as HomeActivity)
         friendsRecyclerView.adapter = adapter
 
         friendsRecyclerView.layoutManager = LinearLayoutManager(requireContext())
 
         allFriends.clear()
         queryFriends()
+
+        adapter.itemCount
 
 
     }
@@ -66,7 +67,8 @@ class chatlistFragment: Fragment(R.layout.fragment_chatlist) {
                 } else {
                     Log.i(TAG, "Success fetching user data")
                     if (dataUsers != null && dataUsers.isNotEmpty()) {
-                        val dataUser = dataUsers.first()
+                        var dataUser = dataUsers.first()
+                        currentUser.add(dataUser)
                         Log.i(
                             TAG,
                             "username: " + dataUser.getUser()?.objectId
@@ -90,7 +92,7 @@ class chatlistFragment: Fragment(R.layout.fragment_chatlist) {
     fun queryParseUser(userID: String){
 //        var userDataPointer: Data = Data()
         val query: ParseQuery<Data> = ParseQuery.getQuery(Data::class.java)
-        query.whereEqualTo(Data.KEY_USERNAME, userID)
+        query.whereEqualTo(Data.KEY_EMAIL, userID)
 
         query.findInBackground(object : FindCallback<Data> {
             override fun done(dataUsers: MutableList<Data>?, e: ParseException?) {

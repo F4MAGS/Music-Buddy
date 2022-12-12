@@ -61,29 +61,29 @@ class HomeActivity : AppCompatActivity() {
             currentFragment(prevStatus)
         }
 
-        val query: ParseQuery<Data> = ParseQuery.getQuery(Data::class.java)
-        query.whereEqualTo(Data.KEY_EMAIL, ParseUser.getCurrentUser().username)
-        query.findInBackground(object : FindCallback<Data> {
-            override fun done(dataUsers: MutableList<Data>?, e: ParseException?) {
-                if (e != null) {
-                    Log.e(TAG, "Error fetching parseUser data")
-                } else {
-                    Log.i(TAG, "Success fetching parseUser data")
-                    val Artists: JSONObject? = dataUsers?.get(0)?.getTopArtistsObject()
-                    val artist1: JSONObject? = Artists?.let { getTopXArtist(it,0) }
-                    val artist2: JSONObject? = Artists?.let { getTopXArtist(it,1) }
-                    val artist3: JSONObject? = Artists?.let { getTopXArtist(it,2) }
-                    getArtistUsername(artist1!!)?.let { Log.i(TAG, it) }
-                    getArtistPicture(artist1!!)?.let { Log.i(TAG, it) }
-                    getArtistUsername(artist2!!)?.let { Log.i(TAG, it) }
-                    getArtistPicture(artist2!!)?.let { Log.i(TAG, it) }
-                    getArtistUsername(artist3!!)?.let { Log.i(TAG, it) }
-                    getArtistPicture(artist3!!)?.let { Log.i(TAG, it) }
-
-                }
-            }
-
-        })
+//        val query: ParseQuery<Data> = ParseQuery.getQuery(Data::class.java)
+//        query.whereEqualTo(Data.KEY_EMAIL, ParseUser.getCurrentUser().username)
+//        query.findInBackground(object : FindCallback<Data> {
+//            override fun done(dataUsers: MutableList<Data>?, e: ParseException?) {
+//                if (e != null) {
+//                    Log.e(TAG, "Error fetching parseUser data")
+//                } else {
+//                    Log.i(TAG, "Success fetching parseUser data")
+//                    val Artists: JSONObject? = dataUsers?.get(0)?.getTopArtistsObject()
+//                    val artist1: JSONObject? = Artists?.let { getTopXArtist(it,0) }
+//                    val artist2: JSONObject? = Artists?.let { getTopXArtist(it,1) }
+//                    val artist3: JSONObject? = Artists?.let { getTopXArtist(it,2) }
+//                    getArtistUsername(artist1!!)?.let { Log.i(TAG, it) }
+//                    getArtistPicture(artist1!!)?.let { Log.i(TAG, it) }
+//                    getArtistUsername(artist2!!)?.let { Log.i(TAG, it) }
+//                    getArtistPicture(artist2!!)?.let { Log.i(TAG, it) }
+//                    getArtistUsername(artist3!!)?.let { Log.i(TAG, it) }
+//                    getArtistPicture(artist3!!)?.let { Log.i(TAG, it) }
+//
+//                }
+//            }
+//
+//        })
 
 
     }
@@ -108,7 +108,6 @@ class HomeActivity : AppCompatActivity() {
         val fragmentTransaction = fragmentManager.beginTransaction()
         fragmentTransaction.replace(R.id.flContainer, fragment)
         fragmentTransaction.commit()
-
     }
 
     private fun previousFragment(previous: String) {
