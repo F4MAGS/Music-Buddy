@@ -446,6 +446,7 @@ GIF created with [LiceCap](http://www.cockos.com/licecap/).
 - [x] [Improved Chat List to include only friends.](https://github.com/F4MAGS/Music-Buddy/issues/88)
 - [x] [Created Adapter for chat messages](https://github.com/F4MAGS/Music-Buddy/issues/89)
 - [x] [Created Fragment for chat messages.](https://github.com/F4MAGS/Music-Buddy/issues/90)
+- [x] [User can see last chat message received from friend in chat list.](https://github.com/F4MAGS/Music-Buddy/issues/94)
 - [x] [Ability to send messages.](https://github.com/F4MAGS/Music-Buddy/issues/38)
 - [x] [Ability to get all messages between chosen user.](https://github.com/F4MAGS/Music-Buddy/issues/37)
 - [x] [Added time stamp of how long ago the message was sent.](https://github.com/F4MAGS/Music-Buddy/issues/91)
