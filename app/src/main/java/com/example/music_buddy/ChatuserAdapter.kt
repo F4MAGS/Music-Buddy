@@ -3,6 +3,7 @@ package com.example.music_buddy
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,6 +15,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.music_buddy.databinding.ActivityHomeBinding
 import com.example.music_buddy.ui.fragments.messageFragment
+import com.parse.FindCallback
+import com.parse.ParseException
+import com.parse.ParseQuery
 
 
 class ChatuserAdapter(val context: Context, val currentUser: List<Data>, val friends: List<Data>, private val activity: FragmentActivity) : RecyclerView.Adapter<ChatuserAdapter.ViewHolder>() {
@@ -24,7 +28,7 @@ class ChatuserAdapter(val context: Context, val currentUser: List<Data>, val fri
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val friend = friends[position]
-        holder.bind(friend)
+        holder.bind(friend, currentUser[0])
 
         holder.tvChatlistName.setOnClickListener {
 //            Toast.makeText(context, "this is number:"+ friends[position], Toast.LENGTH_SHORT).show()
@@ -77,9 +81,27 @@ class ChatuserAdapter(val context: Context, val currentUser: List<Data>, val fri
 
         }
 
-        fun bind(data: Data ){
+        fun bind(data: Data, currentUser: Data){
             tvChatlistName.text = data.getUsername()
-//            tvChatlistMessage.text = message.getMessage()
+
+            val query: ParseQuery<Message> = ParseQuery.getQuery(Message::class.java)
+            query.whereEqualTo(Message.KEY_USERTWO, currentUser.getEmail())
+            query.whereEqualTo(Message.KEY_USERONE, data.getEmail())
+            query.addDescendingOrder("createdAt")
+
+            query.findInBackground(object : FindCallback<Message> {
+                override fun done(messageList: MutableList<Message>?, e: ParseException?) {
+                    if (e != null) {
+                        Log.e(messageFragment.TAG, "Error fetching message data")
+                    } else {
+                        Log.i(messageFragment.TAG, "Success fetching message data")
+                        if (messageList != null && messageList.isNotEmpty()) {
+                            var message = messageList.first()
+                            tvChatlistMessage.text = message.getMessage()
+                        }
+                    }
+                }
+            })
 
             Glide.with(itemView.context).load(data.getProfilePic()?.url).into(ivChatlistPicture)
 
