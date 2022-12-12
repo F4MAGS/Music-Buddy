@@ -451,6 +451,8 @@ GIF created with [LiceCap](http://www.cockos.com/licecap/).
 <img src='SettingsActivityDemo/settings.gif' title='Settings' width='' alt='Settings walkthrough' />
 <img src='SettingsActivityDemo/parseDBafterdemo.png' title='Settings' width='' alt='Parse db after setting' />
 
-	
+##### Top3 Artists from Spotify API gif and screenshot
+<img src='Top3Artists/Top3Artists.gif' title='Top3Artists' width='' alt='showing top3 artists' />
+<img src='Top3Artists/top3artistsDB.png' title='Top3Artists' width='' alt='Parse db putting Top3Artists' />	
 ----		
 All GIFs are created with [LiceCap](http://www.cockos.com/licecap/).
