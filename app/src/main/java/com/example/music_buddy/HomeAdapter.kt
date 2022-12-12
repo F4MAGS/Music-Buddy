@@ -13,7 +13,7 @@ import org.json.JSONObject
 
 class HomeAdapter(val context: Context, val users: List<Data>) : RecyclerView.Adapter<HomeAdapter.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(context).inflate(R.layout.fragment_home, parent, false)
+        val view = LayoutInflater.from(context).inflate(R.layout.item_home, parent, false)
         return ViewHolder(view)
     }
 
@@ -58,6 +58,8 @@ class HomeAdapter(val context: Context, val users: List<Data>) : RecyclerView.Ad
             bio.text = data.getDescription()
 
             artist1.text = data.getTopArtistsObject()?.getJSONObject("name").toString()
+            artist2.text = data.getTopArtistsObject()?.getJSONObject("name").toString()
+            artist3.text = data.getTopArtistsObject()?.getJSONObject("name").toString()
 
             Glide.with(itemView.context).load(data.getProfilePic()?.url).into(profilePic)
         }

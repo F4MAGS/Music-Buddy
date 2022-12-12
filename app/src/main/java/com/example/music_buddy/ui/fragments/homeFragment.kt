@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -13,11 +14,14 @@ import com.parse.FindCallback
 import com.parse.ParseException
 import com.parse.ParseQuery
 
+@Suppress("DEPRECATION")
 class homeFragment: Fragment(R.layout.item_home) {
 
     lateinit var usersRecyclerView: RecyclerView
 
     lateinit var adapter: HomeAdapter
+
+    var count = 0
 
     var allFriends: MutableList<Data> = mutableListOf()
 
@@ -26,7 +30,7 @@ class homeFragment: Fragment(R.layout.item_home) {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.item_home, container, false)
+        return inflater.inflate(R.layout.fragment_home, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -39,7 +43,9 @@ class homeFragment: Fragment(R.layout.item_home) {
 
         usersRecyclerView.layoutManager = LinearLayoutManager(requireContext())
 
-//        queryFriends()
+        allFriends.clear()
+        queryFriends()
+
 
 
     }
@@ -61,12 +67,28 @@ class homeFragment: Fragment(R.layout.item_home) {
                 } else {
                     Log.i(TAG, "Success fetching user data")
                     if (dataUsers != null && dataUsers.isNotEmpty()) {
-                        val dataUser = dataUsers[0]
+                        val dataUser = dataUsers[count]
+
+
 
                         //TODO THIS CODE DECIDES WHAT IS DISPLAYED ON SCREEN
-                        //allFriends.clear()
+                        allFriends.clear()
                         allFriends.add(dataUser)
                         adapter.notifyDataSetChanged()
+
+                        view?.findViewById<Button>(R.id.next)?.setOnClickListener {
+                            count += 1
+                            val ft = fragmentManager!!.beginTransaction()
+                            ft.detach(this@homeFragment).attach(this@homeFragment).commit()
+                            //your implementation goes here
+                        }
+                        view?.findViewById<Button>(R.id.add_friend)?.setOnClickListener {
+                            count += 1
+                            val ft = fragmentManager!!.beginTransaction()
+                            ft.detach(this@homeFragment).attach(this@homeFragment).commit()
+                            //your implementation goes here
+                        }
+
 
                         //ONCE THEY PRESS EITHER BUTTON YOU INCREMENT AND GO TO NEXT USER WHICH IS dataUsers[1] etc
 
@@ -111,7 +133,11 @@ class homeFragment: Fragment(R.layout.item_home) {
 
 
 
+
+
     companion object {
         const val TAG = "homeFragment"
     }
 }
+
+
