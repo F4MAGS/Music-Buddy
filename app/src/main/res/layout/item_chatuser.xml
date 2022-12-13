@@ -57,11 +57,11 @@
         android:layout_toEndOf="@+id/pictureBorder"
         android:background="@drawable/rounded_corners"
         android:paddingLeft="10dp"
-        android:paddingRight="10dp"
         android:paddingTop="3dp"
+        android:paddingRight="10dp"
         android:paddingBottom="3dp"
-        android:singleLine="true"
-        android:text="Text Message Text Message Text Message Text Message Text Message Text Message Text Message Text Message Text Message Text Message Text Message Text Message"
+        android:maxLines="3"
+        android:text="No recent messages received."
         android:textColor="@color/white"
         android:textSize="15dp" />
 </RelativeLayout>

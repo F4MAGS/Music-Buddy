@@ -8,6 +8,7 @@
         <entry key="..\:/Programs/AndroidDevClass/Music-Buddy/app/src/main/res/drawable/rounded_message.xml" value="0.1865" />
         <entry key="..\:/Programs/AndroidDevClass/Music-Buddy/app/src/main/res/layout/activity_friends.xml" value="0.1646403242147923" />
         <entry key="..\:/Programs/AndroidDevClass/Music-Buddy/app/src/main/res/layout/activity_home.xml" value="0.1646403242147923" />
+        <entry key="..\:/Programs/AndroidDevClass/Music-Buddy/app/src/main/res/layout/activity_loading.xml" value="0.16458333333333333" />
         <entry key="..\:/Programs/AndroidDevClass/Music-Buddy/app/src/main/res/layout/activity_login.xml" value="0.25271739130434784" />
         <entry key="..\:/Programs/AndroidDevClass/Music-Buddy/app/src/main/res/layout/bottom_navigation.xml" value="0.75" />
         <entry key="..\:/Programs/AndroidDevClass/Music-Buddy/app/src/main/res/layout/fragment_chat.xml" value="0.33" />
@@ -20,10 +21,11 @@
         <entry key="..\:/Programs/AndroidDevClass/Music-Buddy/app/src/main/res/layout/item_artist.xml" value="0.1646403242147923" />
         <entry key="..\:/Programs/AndroidDevClass/Music-Buddy/app/src/main/res/layout/item_chatuser.xml" value="0.1646403242147923" />
         <entry key="..\:/Programs/AndroidDevClass/Music-Buddy/app/src/main/res/layout/item_friendicon.xml" value="0.1646403242147923" />
-        <entry key="..\:/Programs/AndroidDevClass/Music-Buddy/app/src/main/res/layout/item_messageleft.xml" value="0.5" />
+        <entry key="..\:/Programs/AndroidDevClass/Music-Buddy/app/src/main/res/layout/item_messageleft.xml" value="0.4642857142857143" />
         <entry key="..\:/Programs/AndroidDevClass/Music-Buddy/app/src/main/res/layout/item_messageright.xml" value="0.67" />
         <entry key="..\:/Programs/AndroidDevClass/Music-Buddy/app/src/main/res/layout/item_messagesend.xml" value="0.5" />
         <entry key="..\:/Programs/AndroidDevClass/Music-Buddy/app/src/main/res/layout/settings.xml" value="0.25271739130434784" />
+        <entry key="..\:/Programs/AndroidDevClass/Music-Buddy/app/src/main/res/layout/test.xml" value="0.34403953057442865" />
         <entry key="..\:/Programs/AndroidDevClass/Music-Buddy/app/src/main/res/layout/top_navigation.xml" value="0.1646403242147923" />
         <entry key="..\:/Programs/AndroidDevClass/Music-Buddy/app/src/main/res/layout/top_return.xml" value="0.1646403242147923" />
         <entry key="app/src/main/res/drawable/rounded_corners.xml" value="0.2085" />
@@ -31,7 +33,7 @@
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.14270833333333333" />
         <entry key="app/src/main/res/layout/activity_profile.xml" value="0.18568840579710144" />
         <entry key="app/src/main/res/layout/bottom_navigation.xml" value="0.18568840579710144" />
-        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.21" />
+        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.14270833333333333" />
         <entry key="app/src/main/res/layout/fragment_main.xml" value="0.2385574340820312" />
         <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.18568840579710144" />
         <entry key="app/src/main/res/layout/settings.xml" value="0.20993957519531248" />
