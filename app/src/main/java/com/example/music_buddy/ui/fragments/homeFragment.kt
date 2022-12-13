@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.music_buddy.*
@@ -20,6 +21,8 @@ class homeFragment: Fragment(R.layout.item_home) {
     lateinit var usersRecyclerView: RecyclerView
 
     lateinit var adapter: HomeAdapter
+
+    lateinit var next: Button
 
     var count = 0
 
@@ -43,8 +46,35 @@ class homeFragment: Fragment(R.layout.item_home) {
 
         usersRecyclerView.layoutManager = LinearLayoutManager(requireContext())
 
+        var add_friend = view?.findViewById<Button>(R.id.add_friend)
+        var next = view?.findViewById<Button>(R.id.next)
+
         allFriends.clear()
         queryFriends()
+
+        add_friend?.setOnClickListener {
+            Log.i(TAG, "button was clicked")
+           // val dataUser = dataUsers?.get(count)
+            count += 1
+            allFriends.clear()
+           // if (dataUser != null) {
+           //     allFriends.add(dataUser)
+          //  }
+            adapter.notifyDataSetChanged()
+        }
+
+        next?.setOnClickListener {
+            Log.i(TAG, "button was clicked")
+            // val dataUser = dataUsers?.get(count)
+            count += 1
+            allFriends.clear()
+            // if (dataUser != null) {
+            //     allFriends.add(dataUser)
+            //  }
+            adapter.notifyDataSetChanged()
+        }
+
+
 
 
 
@@ -62,6 +92,7 @@ class homeFragment: Fragment(R.layout.item_home) {
 
         query.findInBackground(object : FindCallback<Data> {
             override fun done(dataUsers: MutableList<Data>?, e: ParseException?) {
+                val dataUser = dataUsers?.get(count)
                 if (e != null) {
                     Log.e(TAG, "Error fetching user data")
                 } else {
@@ -76,18 +107,10 @@ class homeFragment: Fragment(R.layout.item_home) {
                         allFriends.add(dataUser)
                         adapter.notifyDataSetChanged()
 
-                        view?.findViewById<Button>(R.id.next)?.setOnClickListener {
-                            count += 1
-                            val ft = fragmentManager!!.beginTransaction()
-                            ft.detach(this@homeFragment).attach(this@homeFragment).commit()
+
                             //your implementation goes here
-                        }
-                        view?.findViewById<Button>(R.id.add_friend)?.setOnClickListener {
-                            count += 1
-                            val ft = fragmentManager!!.beginTransaction()
-                            ft.detach(this@homeFragment).attach(this@homeFragment).commit()
-                            //your implementation goes here
-                        }
+
+
 
 
                         //ONCE THEY PRESS EITHER BUTTON YOU INCREMENT AND GO TO NEXT USER WHICH IS dataUsers[1] etc
@@ -96,6 +119,7 @@ class homeFragment: Fragment(R.layout.item_home) {
 //                        addFriend(dataUser.getEmail())
 
                     }
+
                 }
             }
         })
@@ -130,6 +154,8 @@ class homeFragment: Fragment(R.layout.item_home) {
 //            }
 //        })
 //    }
+
+
 
 
 
