@@ -90,7 +90,7 @@ class chatlistFragment: Fragment(R.layout.fragment_chatlist) {
     fun queryParseUser(userID: String){
 //        var userDataPointer: Data = Data()
         val query: ParseQuery<Data> = ParseQuery.getQuery(Data::class.java)
-        query.whereEqualTo(Data.KEY_USERNAME, userID)
+        query.whereEqualTo(Data.KEY_EMAIL, userID)
 
         query.findInBackground(object : FindCallback<Data> {
             override fun done(dataUsers: MutableList<Data>?, e: ParseException?) {

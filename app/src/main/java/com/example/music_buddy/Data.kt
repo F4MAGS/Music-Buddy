@@ -43,6 +43,10 @@ class Data : ParseObject() {
         return getParseFile(KEY_PICTURE)
     }
 
+    fun getDescription(): String? {
+        return getString(KEY_DESCRIPTION)
+    }
+
     companion object {
         const val KEY_USERNAME = "username"
         const val KEY_EMAIL = "email"
@@ -50,5 +54,6 @@ class Data : ParseObject() {
         const val KEY_USER = "userID"
         const val KEY_PICTURE = "profilePic"
         const val KEY_ARTISTS = "topArtists"
+        const val KEY_DESCRIPTION = "profileDescription"
     }
 }
