@@ -16,24 +16,28 @@ class Message : ParseObject() {
         return put(KEY_MESSAGE, message)
     }
 
-    fun getUserOne(): ParseUser? {
-        return getParseUser(KEY_USERONE)
+    fun getUserOne(): String? {
+        return getString(KEY_USERONE)
     }
 
-    fun getUserTwo(): ParseUser? {
-        return getParseUser(KEY_USERTWO)
+    fun getUserTwo(): String? {
+        return getString(KEY_USERTWO)
     }
 
-    fun setUserOne(user : ParseUser) {
+    fun setUserOne(user : String) {
         put(KEY_USERONE , user)
     }
 
-    fun setUserTwo(user : ParseUser) {
+    fun setUserTwo(user : String) {
         put(KEY_USERTWO , user)
     }
 
     fun getCreationDate(): String {
         return createdAt.toString()
+    }
+
+    fun getFormattedTimeStamp() : String {
+        return TimeFormatter.getTimeDifference(createdAt.toString())
     }
 
 

@@ -4,6 +4,8 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
@@ -23,6 +25,8 @@ import com.parse.ParseException;
 import com.parse.ParseUser;
 import java.util.*
 import android.widget.Toast
+import java.util.Timer
+import kotlin.concurrent.schedule
 
 
 import com.parse.FindCallback
@@ -146,6 +150,9 @@ class LoginActivity : AppCompatActivity() {
         
     }
     fun loginUser(username:String, password:String,topArtistsObj:JSONObject){
+//        val loginBtn: Button = (Button)findViewById(R.id.loginBtn)
+//        loginBtn.text = "LOADING..."
+//        loginBtn.isClickable = false
         ParseUser.logInInBackground(username, password, ({ user, e ->
             if (user != null) {
                 Log.i(TAG,"Login ParseUser successful")
@@ -160,6 +167,8 @@ class LoginActivity : AppCompatActivity() {
                         Log.e(TAG, "Parse Error: ", e)
                     }
                 }
+                val intent = Intent(this, HomeActivity::class.java)
+                startActivity(intent)
 
             } else {
 
@@ -196,12 +205,12 @@ class LoginActivity : AppCompatActivity() {
                 ParseUser.logOut()
 
                 onGetUserProfileClicked()
-                val intent = Intent(this, HomeActivity::class.java)
-
-                //wait 6 seconds before going to home to give time to the api respose
-                Timer("SettingUp", false).schedule(6000) {
-                    startActivity(intent)
-                }
+//                val intent = Intent(this, HomeActivity::class.java)
+//
+//                //wait 6 seconds before going to home to give time to the api respose
+//                Timer("SettingUp", false).schedule(6000) {
+//                    startActivity(intent)
+//                }
 
             }
 
