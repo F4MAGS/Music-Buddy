@@ -54,24 +54,14 @@ class homeFragment: Fragment(R.layout.item_home) {
 
         add_friend?.setOnClickListener {
             Log.i(TAG, "button was clicked")
-           // val dataUser = dataUsers?.get(count)
             count += 1
-            allFriends.clear()
-           // if (dataUser != null) {
-           //     allFriends.add(dataUser)
-          //  }
-            adapter.notifyDataSetChanged()
+            queryFriends()
         }
 
         next?.setOnClickListener {
             Log.i(TAG, "button was clicked")
-            // val dataUser = dataUsers?.get(count)
             count += 1
-            allFriends.clear()
-            // if (dataUser != null) {
-            //     allFriends.add(dataUser)
-            //  }
-            adapter.notifyDataSetChanged()
+            queryFriends()
         }
 
 
@@ -92,13 +82,17 @@ class homeFragment: Fragment(R.layout.item_home) {
 
         query.findInBackground(object : FindCallback<Data> {
             override fun done(dataUsers: MutableList<Data>?, e: ParseException?) {
-                val dataUser = dataUsers?.get(count)
                 if (e != null) {
                     Log.e(TAG, "Error fetching user data")
                 } else {
                     Log.i(TAG, "Success fetching user data")
                     if (dataUsers != null && dataUsers.isNotEmpty()) {
+                        if(count == dataUsers.lastIndex){
+                            count = 0
+                        }
                         val dataUser = dataUsers[count]
+                        //val current = dataUsers.lastIndex
+
 
 
 
